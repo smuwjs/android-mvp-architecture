@@ -19,17 +19,6 @@ android {
     }
 }
 
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-    }
-}
-
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile rootProject.ext.dependencies["junit"]
@@ -93,5 +82,7 @@ dependencies {
     compile rootProject.ext.dependencies["timber"]
     compile rootProject.ext.dependencies["glide"]
     apt rootProject.ext.dependencies["dagger2-apt-compiler"]
-
+   // compile (project(':rxerrorhandler')){
+    //    exclude module: 'rxjava'
+   // }
 }
