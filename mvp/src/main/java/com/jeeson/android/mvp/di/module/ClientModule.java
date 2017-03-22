@@ -2,9 +2,12 @@ package com.jeeson.android.mvp.di.module;
 
 import android.app.Application;
 
-import com.jess.arms.base.AppManager;
-import com.jess.arms.http.RequestIntercept;
-import com.jess.arms.utils.DataHelper;
+
+import com.jeeson.android.mvp.base.AppManager;
+import com.jeeson.android.mvp.http.RequestIntercept;
+import com.jeeson.android.mvp.rxerrorhandler.core.RxErrorHandler;
+import com.jeeson.android.mvp.rxerrorhandler.handler.listener.ResponseErroListener;
+import com.jeeson.android.mvp.utils.DataHelper;
 
 import java.io.File;
 import java.util.List;
@@ -17,8 +20,6 @@ import dagger.Module;
 import dagger.Provides;
 import io.rx_cache.internal.RxCache;
 import io.victoralbertos.jolyglot.GsonSpeaker;
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErroListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -27,7 +28,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by jessyan on 2016/3/14.
+ * Created by jeeson on 2016/3/14.
  */
 @Module
 public class ClientModule {
@@ -44,7 +45,7 @@ public class ClientModule {
      * @param client
      * @param httpUrl
      * @return
-     * @author: jess
+     * @author: jeeson
      * @date 8/30/16 1:15 PM
      * @description:提供retrofit
      */

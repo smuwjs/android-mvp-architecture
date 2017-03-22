@@ -3,8 +3,9 @@ package com.jeeson.android.mvp.di.module;
 import android.app.Application;
 import android.text.TextUtils;
 
-import com.jess.arms.http.GlobeHttpHandler;
-import com.jess.arms.utils.DataHelper;
+import com.jeeson.android.mvp.http.GlobeHttpHandler;
+import com.jeeson.android.mvp.rxerrorhandler.handler.listener.ResponseErroListener;
+import com.jeeson.android.mvp.utils.DataHelper;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,14 +15,13 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import me.jessyan.rxerrorhandler.handler.listener.ResponseErroListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 
-import static com.jess.arms.utils.Preconditions.checkNotNull;
+import static com.jeeson.android.mvp.utils.Preconditions.checkNotNull;
 
 /**
- * Created by jessyan on 2016/3/14.
+ * Created by jeeson on 2016/3/14.
  */
 @Module
 public class GlobeConfigModule {
@@ -32,7 +32,7 @@ public class GlobeConfigModule {
     private File mCacheFile;
 
     /**
-     * @author: jess
+     * @author: jeeson
      * @date 8/5/16 11:03 AM
      * @description: 设置baseurl
      */

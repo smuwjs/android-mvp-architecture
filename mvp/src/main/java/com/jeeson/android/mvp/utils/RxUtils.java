@@ -1,8 +1,8 @@
 package com.jeeson.android.mvp.utils;
 
-import com.jess.arms.base.BaseActivity;
-import com.jess.arms.base.BaseFragment;
-import com.jess.arms.mvp.BaseView;
+import com.jeeson.android.mvp.base.BaseActivity;
+import com.jeeson.android.mvp.base.BaseFragment;
+import com.jeeson.android.mvp.mvp.BaseView;
 import com.trello.rxlifecycle.LifecycleTransformer;
 
 import rx.Observable;
@@ -11,8 +11,8 @@ import rx.functions.Action0;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by jess on 11/10/2016 16:39
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 11/10/2016 16:39
+ * Contact with smuwjs@163.com
  */
 
 public class RxUtils {

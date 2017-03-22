@@ -1,15 +1,16 @@
 package com.jeeson.android.mvp.di.component;
 
-import com.jess.arms.base.BaseApplication;
-import com.jess.arms.di.module.AppModule;
+
+import com.jeeson.android.mvp.base.BaseApplication;
+import com.jeeson.android.mvp.di.module.AppModule;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
 
 /**
- * Created by jess on 14/12/2016 13:58
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 14/12/2016 13:58
+ * Contact with smuwjs@163.com
  */
 @Singleton
 @Component(modules={AppModule.class})

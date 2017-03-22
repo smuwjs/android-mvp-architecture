@@ -26,8 +26,8 @@ import timber.log.Timber;
  * 用于管理所有activity,和在前台的 activity
  * 可以通过直接持有AppManager对象执行对应方法
  * 也可以通过eventbus post事件,远程遥控执行对应方法
- * Created by jess on 14/12/2016 13:50
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 14/12/2016 13:50
+ * Contact with smuwjs@163.com
  */
 @Singleton
 public class AppManager {

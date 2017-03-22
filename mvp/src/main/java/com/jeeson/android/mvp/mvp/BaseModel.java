@@ -1,11 +1,11 @@
 package com.jeeson.android.mvp.mvp;
 
-import com.jess.arms.http.BaseCacheManager;
-import com.jess.arms.http.BaseServiceManager;
+import com.jeeson.android.mvp.http.BaseCacheManager;
+import com.jeeson.android.mvp.http.BaseServiceManager;
 
 /**
- * Created by jess on 8/5/16 12:55
- * contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 8/5/16 12:55
+ * contact with smuwjs@163.com
  */
 public class BaseModel<S extends BaseServiceManager, C extends BaseCacheManager> implements IModel{
     protected S mServiceManager;//服务管理类,用于网络请求

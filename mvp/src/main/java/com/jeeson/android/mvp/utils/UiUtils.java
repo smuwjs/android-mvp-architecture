@@ -19,20 +19,20 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jess.arms.base.BaseApplication;
+import com.jeeson.android.mvp.base.BaseApplication;
 
 import org.simple.eventbus.EventBus;
 
 import java.security.MessageDigest;
 
-import static com.jess.arms.base.AppManager.APPMANAGER_MESSAGE;
-import static com.jess.arms.base.AppManager.APP_EXIT;
-import static com.jess.arms.base.AppManager.KILL_ALL;
-import static com.jess.arms.base.AppManager.SHOW_SNACKBAR;
-import static com.jess.arms.base.AppManager.START_ACTIVITY;
+import static com.jeeson.android.mvp.base.AppManager.APPMANAGER_MESSAGE;
+import static com.jeeson.android.mvp.base.AppManager.APP_EXIT;
+import static com.jeeson.android.mvp.base.AppManager.KILL_ALL;
+import static com.jeeson.android.mvp.base.AppManager.SHOW_SNACKBAR;
+import static com.jeeson.android.mvp.base.AppManager.START_ACTIVITY;
 
 /**
- * Created by jess on 2015/11/23.
+ * Created by jeeson on 2015/11/23.
  */
 public class UiUtils {
     static public Toast mToast;

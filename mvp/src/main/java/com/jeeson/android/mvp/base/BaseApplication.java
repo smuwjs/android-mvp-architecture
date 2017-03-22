@@ -3,15 +3,16 @@ package com.jeeson.android.mvp.base;
 import android.app.Application;
 import android.content.Context;
 
-import com.jess.arms.di.component.DaggerBaseComponent;
-import com.jess.arms.di.module.AppModule;
-import com.jess.arms.di.module.ClientModule;
-import com.jess.arms.di.module.GlobeConfigModule;
-import com.jess.arms.di.module.ImageModule;
+import com.jeeson.android.mvp.di.component.DaggerBaseComponent;
+import com.jeeson.android.mvp.di.module.AppModule;
+import com.jeeson.android.mvp.di.module.ClientModule;
+import com.jeeson.android.mvp.di.module.GlobeConfigModule;
+import com.jeeson.android.mvp.di.module.ImageModule;
 
 import javax.inject.Inject;
 
-import static com.jess.arms.utils.Preconditions.checkNotNull;
+import static com.jeeson.android.mvp.utils.Preconditions.checkNotNull;
+
 
 /**
  * 本项目由

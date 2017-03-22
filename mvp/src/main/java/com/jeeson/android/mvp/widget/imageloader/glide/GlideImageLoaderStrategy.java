@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
-import com.jess.arms.widget.imageloader.BaseImageLoaderStrategy;
+import com.jeeson.android.mvp.widget.imageloader.BaseImageLoaderStrategy;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -19,8 +19,8 @@ import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by jess on 8/5/16 16:28
- * contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 8/5/16 16:28
+ * contact with smuwjs@163.com
  */
 @Singleton
 public class GlideImageLoaderStrategy implements BaseImageLoaderStrategy<GlideImageConfig> {

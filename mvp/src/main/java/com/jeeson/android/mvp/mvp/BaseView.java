@@ -3,7 +3,7 @@ package com.jeeson.android.mvp.mvp;
 import android.content.Intent;
 
 /**
- * Created by jess on 16/4/22.
+ * Created by jeeson on 16/4/22.
  */
 public interface BaseView {
 

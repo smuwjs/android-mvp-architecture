@@ -2,7 +2,8 @@ package com.jeeson.android.mvp.http;
 
 import android.support.annotation.NonNull;
 
-import com.jess.arms.utils.ZipHelper;
+
+import com.jeeson.android.mvp.utils.ZipHelper;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -22,11 +23,11 @@ import okio.Buffer;
 import okio.BufferedSource;
 import timber.log.Timber;
 
-import static com.jess.arms.utils.CharactorHandler.jsonFormat;
+import static com.jeeson.android.mvp.utils.CharactorHandler.jsonFormat;
 
 
 /**
- * Created by jess on 7/1/16.
+ * Created by jeeson on 7/1/16.
  */
 @Singleton
 public class RequestIntercept implements Interceptor {

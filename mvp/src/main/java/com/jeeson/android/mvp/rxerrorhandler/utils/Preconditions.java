@@ -1,4 +1,4 @@
-package com.jeeson.android.mvp.utils;
+package com.jeeson.android.mvp.rxerrorhandler.utils;
 
 import android.support.annotation.Nullable;
 

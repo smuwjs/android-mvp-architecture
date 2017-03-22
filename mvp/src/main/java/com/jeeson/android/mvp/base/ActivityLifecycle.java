@@ -7,11 +7,11 @@ import android.os.Bundle;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import static com.jess.arms.base.BaseActivity.IS_NOT_ADD_ACTIVITY_LIST;
+import static com.jeeson.android.mvp.base.BaseActivity.IS_NOT_ADD_ACTIVITY_LIST;
 
 /**
- * Created by jess on 21/02/2017 14:23
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 21/02/2017 14:23
+ * Contact with smuwjs@163.com
  */
 @Singleton
 public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks {

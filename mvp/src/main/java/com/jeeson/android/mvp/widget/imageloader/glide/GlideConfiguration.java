@@ -10,13 +10,13 @@ import com.bumptech.glide.load.engine.cache.DiskLruCacheWrapper;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.module.GlideModule;
-import com.jess.arms.utils.DataHelper;
-import com.jess.arms.utils.UiUtils;
+import com.jeeson.android.mvp.utils.DataHelper;
+import com.jeeson.android.mvp.utils.UiUtils;
 
 import java.io.File;
 
 /**
- * Created by jess on 16/4/15.
+ * Created by jeeson on 16/4/15.
  */
 public class GlideConfiguration implements GlideModule {
     public static final int IMAGE_DISK_CACHE_MAX_SIZE = 100 * 1024 * 1024;//图片缓存文件最大值为100Mb

@@ -25,6 +25,7 @@ dependencies {
     compile (rootProject.ext.dependencies["support-v4"]){
         exclude module: 'support-annotations'
     }
+    compile rootProject.ext.dependencies["constraint-layout"]
     compile rootProject.ext.dependencies["gson"]
     compile (rootProject.ext.dependencies["appcompat-v7"]){
         exclude module: 'support-annotations'
@@ -82,7 +83,9 @@ dependencies {
     compile rootProject.ext.dependencies["timber"]
     compile rootProject.ext.dependencies["glide"]
     apt rootProject.ext.dependencies["dagger2-apt-compiler"]
-   // compile (project(':rxerrorhandler')){
-    //    exclude module: 'rxjava'
-   // }
+
+    // UI Testing
+    androidTestCompile(rootProject.ext.dependencies["espresso-core"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 }

@@ -6,8 +6,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- * Created by jess on 8/5/16 15:57
- * contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 8/5/16 15:57
+ * contact with smuwjs@163.com
  */
 @Singleton
 public final class ImageLoader {

@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.jess.arms.mvp.Presenter;
+import com.jeeson.android.mvp.mvp.Presenter;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import org.simple.eventbus.EventBus;
@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * Created by jess on 2015/12/8.
+ * Created by jeeson on 2015/12/8.
  */
 public abstract class BaseFragment<P extends Presenter> extends RxFragment {
     protected BaseActivity mActivity;

@@ -2,16 +2,17 @@ package com.jeeson.android.mvp.utils;
 
 import android.Manifest;
 
-import com.jess.arms.mvp.BaseView;
+import com.jeeson.android.mvp.mvp.BaseView;
+import com.jeeson.android.mvp.rxerrorhandler.core.RxErrorHandler;
+import com.jeeson.android.mvp.rxerrorhandler.handler.ErrorHandleSubscriber;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
+
 import timber.log.Timber;
 
 /**
- * Created by jess on 17/10/2016 10:09
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 17/10/2016 10:09
+ * Contact with smuwjs@163.com
  */
 
 public class PermissionUtil {

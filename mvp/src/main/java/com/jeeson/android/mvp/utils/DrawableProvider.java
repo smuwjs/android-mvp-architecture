@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.io.IOException;
 
 /**
- * Created by jess on 2015/11/24.
+ * Created by jeeson on 2015/11/24.
  */
 public class DrawableProvider {
 

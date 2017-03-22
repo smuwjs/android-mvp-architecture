@@ -5,8 +5,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 /**
- * Created by jess on 8/30/16 17:47
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 8/30/16 17:47
+ * Contact with smuwjs@163.com
  */
 public interface GlobeHttpHandler {
     Response onHttpResultResponse(String httpResult, Interceptor.Chain chain, Response response);

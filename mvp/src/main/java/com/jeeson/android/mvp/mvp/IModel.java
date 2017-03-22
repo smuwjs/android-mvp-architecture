@@ -1,8 +1,8 @@
 package com.jeeson.android.mvp.mvp;
 
 /**
- * Created by jess on 15/12/2016 10:45
- * Contact with jess.yan.effort@gmail.com
+ * Created by jeeson on 15/12/2016 10:45
+ * Contact with smuwjs@163.com
  */
 
 public interface IModel {
