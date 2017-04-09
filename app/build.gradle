@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -43,21 +42,35 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile rootProject.ext.dependencies["junit"]
-    apt rootProject.ext.dependencies["dagger2-apt-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     provided rootProject.ext.dependencies["javax.annotation"]
-    apt rootProject.ext.dependencies["butterknife-apt"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
 
     compile rootProject.ext.dependencies["paginate"]
+
+    compile project(':mvp')
+
     debugCompile rootProject.ext.dependencies["canary-debug"]
     releaseCompile rootProject.ext.dependencies["canary-release"]
     testCompile rootProject.ext.dependencies["canary-release"]
 
-    // UI Testing
-    /*androidTestCompile(rootProject.ext.dependencies["espresso-core"], {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })*/
 
-    compile project(':mvp')
+    // dependencies for local unit tests
+    testCompile rootProject.ext.dependencies["junit"]
+    testCompile rootProject.ext.dependencies["mockito-core"]
+    testAnnotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    androidTestAnnotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+
+    // UI Testing
+    androidTestCompile(rootProject.ext.dependencies["espresso-core"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile rootProject.ext.dependencies["espresso-intents"]
+    androidTestCompile rootProject.ext.dependencies["mockito-core"]
 
 }
+
+configurations.all {
+    resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+}
+

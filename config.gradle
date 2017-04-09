@@ -20,8 +20,8 @@ ext {
             "design"                   : "com.android.support:design:${android["androidSupportSdkVersion"]}",
             "support-v4"               : "com.android.support:support-v4:${android["androidSupportSdkVersion"]}",
             "cardview-v7"              : "com.android.support:cardview-v7:${android["androidSupportSdkVersion"]}",
-            "constraint-layout"        : "com.android.support.constraint:constraint-layout:1.0.1",
-            "annotations"              : "com.android.support:support-annotations:${android["androidSupportSdkVersion"]}",
+            //"constraint-layout"      : "com.android.support.constraint:constraint-layout:1.0.1",
+            "support-annotations"      : "com.android.support:support-annotations:${android["androidSupportSdkVersion"]}",
             "recyclerview-v7"          : "com.android.support:recyclerview-v7:${android["androidSupportSdkVersion"]}",
             "retrofit"                 : "com.squareup.retrofit2:retrofit:${android["retrofitSdkVersion"]}",
             "retrofit-converter-gson"  : "com.squareup.retrofit2:converter-gson:${android["retrofitSdkVersion"]}",
@@ -41,7 +41,7 @@ ext {
             "rxcache"                  : "com.github.VictorAlbertos.RxCache:runtime:1.7.0-1.x",
             "rxcache-jolyglot-gson"    : "com.github.VictorAlbertos.Jolyglot:gson:0.0.3",
             "dagger2"                  : "com.google.dagger:dagger:${android["dagger2SdkVersion"]}",
-            "dagger2-apt-compiler"     : "com.google.dagger:dagger-compiler:${android["dagger2SdkVersion"]}",
+            "dagger-compiler"          : "com.google.dagger:dagger-compiler:${android["dagger2SdkVersion"]}",
             "rxbinding-recyclerview-v7": "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0",
             "rxpermissions"            : "com.tbruyelle.rxpermissions:rxpermissions:0.9.1@aar",
             "pickerview"               : "com.bigkoo:pickerview:2.0.8",
@@ -63,6 +63,4 @@ ext {
             "canary-debug"             : "com.squareup.leakcanary:leakcanary-android:1.4-beta2",
             "canary-release"           : "com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2"
     ]
-
-
 }
