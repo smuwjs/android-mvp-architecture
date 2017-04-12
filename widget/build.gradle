@@ -27,6 +27,9 @@ dependencies {
     compile rootProject.ext.dependencies["appcompat-v7"]
     compile rootProject.ext.dependencies["support-annotations"]
 
+    // android third-party ui libraries
+    compile rootProject.ext.dependencies["paginate"]
+
     //logout and unit test
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
