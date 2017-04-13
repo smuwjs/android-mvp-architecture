@@ -1,4 +1,4 @@
-package com.jeeson.android.mvp.demo.app;
+package com.jeeson.android.mvp.demo.di.component;
 
 import android.app.Application;
 

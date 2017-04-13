@@ -1,4 +1,4 @@
-package com.jeeson.android.mvp.demo.app.service;
+package com.jeeson.android.mvp.demo.service;
 
 
 import com.jeeson.android.mvp.base.BaseService;

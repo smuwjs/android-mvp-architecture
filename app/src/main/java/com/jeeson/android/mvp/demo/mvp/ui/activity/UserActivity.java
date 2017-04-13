@@ -10,8 +10,8 @@ import android.view.View;
 
 import com.jeeson.android.mvp.base.DefaultAdapter;
 import com.jeeson.android.mvp.demo.R;
-import com.jeeson.android.mvp.demo.app.AppComponent;
-import com.jeeson.android.mvp.demo.base.WEActivity;
+import com.jeeson.android.mvp.demo.di.component.AppComponent;
+import com.jeeson.android.mvp.demo.mvp.ui.base.WEActivity;
 import com.jeeson.android.mvp.demo.di.component.DaggerUserComponent;
 import com.jeeson.android.mvp.demo.di.module.UserModule;
 import com.jeeson.android.mvp.demo.mvp.contract.UserContract;

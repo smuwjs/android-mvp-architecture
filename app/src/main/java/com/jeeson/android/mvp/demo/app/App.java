@@ -5,6 +5,8 @@ import android.text.TextUtils;
 
 import com.jeeson.android.mvp.base.BaseApplication;
 import com.jeeson.android.mvp.demo.BuildConfig;
+import com.jeeson.android.mvp.demo.di.component.AppComponent;
+import com.jeeson.android.mvp.demo.di.component.DaggerAppComponent;
 import com.jeeson.android.mvp.demo.di.module.CacheModule;
 import com.jeeson.android.mvp.demo.di.module.ServiceModule;
 import com.jeeson.android.mvp.demo.mvp.model.api.Api;

@@ -1,9 +1,9 @@
-package com.jeeson.android.mvp.demo.base;
+package com.jeeson.android.mvp.demo.mvp.ui.base;
 
 
 import com.jeeson.android.mvp.base.BaseActivity;
 import com.jeeson.android.mvp.demo.app.App;
-import com.jeeson.android.mvp.demo.app.AppComponent;
+import com.jeeson.android.mvp.demo.di.component.AppComponent;
 import com.jeeson.android.mvp.mvp.Presenter;
 
 /**
