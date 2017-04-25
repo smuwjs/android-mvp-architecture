@@ -70,6 +70,6 @@ dependencies {
     androidTestCompile rootProject.ext.dependencies["espresso-core"]
 
     //module
-    compile project(':widget')
+    //compile project(':widget')
     compile project(':kit')
 }

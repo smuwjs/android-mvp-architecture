@@ -76,6 +76,8 @@ dependencies {
 }
 
 configurations.all {
-    resolutionStrategy.force rootProject.ext.dependencies["jsr305"]
+    resolutionStrategy {
+        force rootProject.ext.dependencies["jsr305"]
+    }
 }
 

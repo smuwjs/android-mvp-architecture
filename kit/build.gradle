@@ -30,6 +30,8 @@ dependencies {
     //logout and unit test
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
-    androidTestCompile rootProject.ext.dependencies["espresso-core"]
+    androidTestCompile(rootProject.ext.dependencies["espresso-core"], {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
 
 }
