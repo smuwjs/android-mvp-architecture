@@ -44,8 +44,7 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
     compile rootProject.ext.dependencies["androideventbus"]
 
-    //view
-    compile rootProject.ext.dependencies["autolayout"]
+
     compile rootProject.ext.dependencies["butterknife"]
 
     // reactive
@@ -69,4 +68,8 @@ dependencies {
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
     androidTestCompile rootProject.ext.dependencies["espresso-core"]
+
+    //module
+    compile project(':widget')
+    compile project(':kit')
 }

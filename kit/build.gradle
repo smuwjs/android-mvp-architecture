@@ -25,16 +25,11 @@ dependencies {
     // android support libraries
     compile rootProject.ext.dependencies["support-v4"]
     compile rootProject.ext.dependencies["appcompat-v7"]
-    compile rootProject.ext.dependencies["cardview-v7"]
-    compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["support-annotations"]
-
-    // android third-party ui libraries
-    compile rootProject.ext.dependencies["paginate"]
-    compile rootProject.ext.dependencies["autolayout"]
 
     //logout and unit test
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
     androidTestCompile rootProject.ext.dependencies["espresso-core"]
+
 }

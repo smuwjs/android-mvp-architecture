@@ -3,8 +3,8 @@ package com.jeeson.android.mvp.http;
 import android.support.annotation.Nullable;
 
 
-import com.jeeson.android.mvp.utils.CharactorHandler;
-import com.jeeson.android.mvp.utils.ZipHelper;
+import com.jeeson.android.kit.CharactorHandler;
+import com.jeeson.android.kit.ZipHelper;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;

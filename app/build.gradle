@@ -49,10 +49,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
     // android support libraries
-    compile rootProject.ext.dependencies["support-v4"]
-    compile rootProject.ext.dependencies["appcompat-v7"]
-    compile rootProject.ext.dependencies["cardview-v7"]
-    compile rootProject.ext.dependencies["design"]
     compile rootProject.ext.dependencies["support-annotations"]
 
     annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
@@ -76,7 +72,7 @@ dependencies {
 
     compile project(':mvp')
     compile project(':widget')
-
+    compile project(':kit')
 }
 
 configurations.all {

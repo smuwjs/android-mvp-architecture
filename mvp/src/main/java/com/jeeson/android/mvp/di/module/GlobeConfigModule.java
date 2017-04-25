@@ -3,9 +3,9 @@ package com.jeeson.android.mvp.di.module;
 import android.app.Application;
 import android.text.TextUtils;
 
+import com.jeeson.android.kit.DataHelper;
 import com.jeeson.android.mvp.http.GlobeHttpHandler;
 import com.jeeson.android.mvp.rxerrorhandler.handler.listener.ResponseErroListener;
-import com.jeeson.android.mvp.utils.DataHelper;
 
 import java.io.File;
 import java.util.ArrayList;

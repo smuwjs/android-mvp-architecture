@@ -3,7 +3,7 @@ package com.jeeson.android.mvp.http;
 import android.support.annotation.NonNull;
 
 
-import com.jeeson.android.mvp.utils.ZipHelper;
+import com.jeeson.android.kit.ZipHelper;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,7 +23,7 @@ import okio.Buffer;
 import okio.BufferedSource;
 import timber.log.Timber;
 
-import static com.jeeson.android.mvp.utils.CharactorHandler.jsonFormat;
+import static com.jeeson.android.kit.CharactorHandler.jsonFormat;
 
 
 /**

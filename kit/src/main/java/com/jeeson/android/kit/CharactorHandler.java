@@ -1,4 +1,4 @@
-package com.jeeson.android.mvp.utils;
+package com.jeeson.android.kit;
 
 import android.text.InputFilter;
 import android.text.Spanned;

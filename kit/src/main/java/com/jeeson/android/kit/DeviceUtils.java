@@ -1,4 +1,4 @@
-package com.jeeson.android.mvp.utils;
+package com.jeeson.android.kit;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

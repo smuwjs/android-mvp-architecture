@@ -11,11 +11,10 @@ import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
+import com.jeeson.android.kit.DataHelper;
 import com.jeeson.android.mvp.base.BaseApplication;
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.http.OkHttpUrlLoader;
-import com.jeeson.android.mvp.utils.DataHelper;
-import com.jeeson.android.mvp.utils.UiUtils;
 
 import java.io.File;
 import java.io.InputStream;
