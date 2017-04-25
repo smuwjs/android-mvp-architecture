@@ -2,10 +2,11 @@ package com.jeeson.android.mvp.demo.mvp.model;
 
 
 import com.jeeson.android.mvp.demo.mvp.contract.UserContract;
-import com.jeeson.android.mvp.demo.mvp.model.api.cache.CacheManager;
-import com.jeeson.android.mvp.demo.mvp.model.api.service.ServiceManager;
+import com.jeeson.android.mvp.demo.mvp.model.api.cache.CommonCache;
+import com.jeeson.android.mvp.demo.mvp.model.api.service.UserAPIService;
 import com.jeeson.android.mvp.demo.mvp.model.entity.User;
 import com.jeeson.android.mvp.di.scope.ActivityScope;
+import com.jeeson.android.mvp.integration.IRepositoryManager;
 import com.jeeson.android.mvp.mvp.BaseModel;
 
 import java.util.List;
@@ -24,21 +25,21 @@ import rx.functions.Func1;
  * Contact with jess.yan.effort@gmail.com
  */
 @ActivityScope
-public class UserModel extends BaseModel<ServiceManager, CacheManager> implements UserContract.Model {
+public class UserModel extends BaseModel implements UserContract.Model {
     public static final int USERS_PER_PAGE = 10;
 
     @Inject
-    public UserModel(ServiceManager serviceManager, CacheManager cacheManager) {
-        super(serviceManager, cacheManager);
+    public UserModel(IRepositoryManager repositoryManager) {
+        super(repositoryManager);
     }
 
 
     @Override
     public Observable<List<User>> getUsers(int lastIdQueried, boolean update) {
-        Observable<List<User>> users = mServiceManager.getUserService()
+        Observable<List<User>> users = mRepositoryManager.obtainRetrofitService(UserAPIService.class)
                 .getUsers(lastIdQueried, USERS_PER_PAGE);
         //使用rxcache缓存,上拉刷新则不读取缓存,加载更多读取缓存
-        return mCacheManager.getCommonCache()
+        return mRepositoryManager.obtainCacheService(CommonCache.class)
                 .getUsers(users
                         , new DynamicKey(lastIdQueried)
                         , new EvictDynamicKey(update))

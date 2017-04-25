@@ -1,17 +1,10 @@
 package com.jeeson.android.mvp.base;
 
 import android.app.Application;
-import android.content.Context;
 
-import com.jeeson.android.mvp.di.component.DaggerBaseComponent;
-import com.jeeson.android.mvp.di.module.AppModule;
-import com.jeeson.android.mvp.di.module.ClientModule;
-import com.jeeson.android.mvp.di.module.GlobeConfigModule;
-import com.jeeson.android.mvp.di.module.ImageModule;
+import com.jeeson.android.mvp.base.delegate.AppDelegate;
+import com.jeeson.android.mvp.di.component.AppComponent;
 
-import javax.inject.Inject;
-
-import static com.jeeson.android.mvp.utils.Preconditions.checkNotNull;
 
 
 /**
@@ -23,33 +16,15 @@ import static com.jeeson.android.mvp.utils.Preconditions.checkNotNull;
  * +androideventbus
  * +butterknife组成
  */
-public abstract class BaseApplication extends Application {
-    static private BaseApplication mApplication;
-    private ClientModule mClientModule;
-    private AppModule mAppModule;
-    private ImageModule mImagerModule;
-    private GlobeConfigModule mGlobeConfigModule;
-    @Inject
-    protected AppManager mAppManager;
-    @Inject
-    protected ActivityLifecycle mActivityLifecycle;
-    protected final String TAG = this.getClass().getSimpleName();
+public  class BaseApplication extends Application {
+    private AppDelegate mAppDelegate;
 
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mApplication = this;
-        this.mAppModule = new AppModule(this);//提供application
-        DaggerBaseComponent
-                .builder()
-                .appModule(mAppModule)
-                .build()
-                .inject(this);
-        this.mImagerModule = new ImageModule();//图片加载框架默认使用glide
-        this.mClientModule = new ClientModule(mAppManager);//用于提供okhttp和retrofit的单例
-        this.mGlobeConfigModule = checkNotNull(getGlobeConfigModule(), "lobeConfigModule is required");
-        registerActivityLifecycleCallbacks(mActivityLifecycle);
+        this.mAppDelegate = new AppDelegate(this);
+        this.mAppDelegate.onCreate();
     }
 
     /**
@@ -58,57 +33,18 @@ public abstract class BaseApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        if (mClientModule != null)
-            this.mClientModule = null;
-        if (mAppModule != null)
-            this.mAppModule = null;
-        if (mImagerModule != null)
-            this.mImagerModule = null;
-        if (mActivityLifecycle != null) {
-            unregisterActivityLifecycleCallbacks(mActivityLifecycle);
-        }
-        if (mAppManager != null) {//释放资源
-            this.mAppManager.release();
-            this.mAppManager = null;
-        }
-        if (mApplication != null)
-            this.mApplication = null;
+        this.mAppDelegate.onTerminate();
     }
 
 
     /**
-     * 将app的全局配置信息封装进module(使用Dagger注入到需要配置信息的地方)
+     * 将AppComponent返回出去,供其它地方使用, AppComponent接口中声明的方法返回的实例,在getAppComponent()拿到对象后都可以直接使用
      *
      * @return
      */
-    protected abstract GlobeConfigModule getGlobeConfigModule();
-
-
-    public ClientModule getClientModule() {
-        return mClientModule;
+    public AppComponent getAppComponent() {
+        return mAppDelegate.getAppComponent();
     }
 
-    public AppModule getAppModule() {
-        return mAppModule;
-    }
-
-    public ImageModule getImageModule() {
-        return mImagerModule;
-    }
-
-
-    public AppManager getAppManager() {
-        return mAppManager;
-    }
-
-
-    /**
-     * 返回上下文
-     *
-     * @return
-     */
-    public static Context getContext() {
-        return mApplication;
-    }
 
 }

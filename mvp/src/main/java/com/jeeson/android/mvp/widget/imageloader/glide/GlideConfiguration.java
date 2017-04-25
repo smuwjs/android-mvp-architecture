@@ -9,11 +9,16 @@ import com.bumptech.glide.load.engine.cache.DiskCache;
 import com.bumptech.glide.load.engine.cache.DiskLruCacheWrapper;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
+import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
+import com.jeeson.android.mvp.base.BaseApplication;
+import com.jeeson.android.mvp.di.component.AppComponent;
+import com.jeeson.android.mvp.http.OkHttpUrlLoader;
 import com.jeeson.android.mvp.utils.DataHelper;
 import com.jeeson.android.mvp.utils.UiUtils;
 
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * Created by jeeson on 16/4/15.
@@ -27,8 +32,8 @@ public class GlideConfiguration implements GlideModule {
             @Override
             public DiskCache build() {
                 // Careful: the external cache directory doesn't enforce permissions
-                File cacheDirectory = new File(DataHelper.getCacheFile(UiUtils.getContext()), "Glide");
-                return DiskLruCacheWrapper.get(DataHelper.makeDirs(cacheDirectory), IMAGE_DISK_CACHE_MAX_SIZE);
+                AppComponent appComponent = ((BaseApplication)context.getApplicationContext()).getAppComponent();
+                return DiskLruCacheWrapper.get(DataHelper.makeDirs(new File(appComponent.cacheFile(), "Glide")), IMAGE_DISK_CACHE_MAX_SIZE);
             }
         });
 
@@ -46,6 +51,8 @@ public class GlideConfiguration implements GlideModule {
 
     @Override
     public void registerComponents(Context context, Glide glide) {
-
+        //Glide默认使用HttpURLConnection做网络请求,在这切换成okhttp请求
+        AppComponent appComponent = ((BaseApplication)context.getApplicationContext()).getAppComponent();
+        glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(appComponent.okHttpClient()));
     }
 }

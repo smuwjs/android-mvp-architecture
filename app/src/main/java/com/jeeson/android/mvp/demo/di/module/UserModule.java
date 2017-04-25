@@ -3,6 +3,7 @@ package com.jeeson.android.mvp.demo.di.module;
 
 import com.jeeson.android.mvp.demo.mvp.contract.UserContract;
 import com.jeeson.android.mvp.demo.mvp.model.UserModel;
+import com.jeeson.android.mvp.demo.mvp.presenter.UserPresenter;
 import com.jeeson.android.mvp.di.scope.ActivityScope;
 
 import dagger.Module;
@@ -34,5 +35,11 @@ public class UserModule {
     @Provides
     UserContract.Model provideUserModel(UserModel model){
         return model;
+    }
+
+    @ActivityScope
+    @Provides
+    UserContract.Presenter provideUserPresenter(UserPresenter presenter){
+        return presenter;
     }
 }

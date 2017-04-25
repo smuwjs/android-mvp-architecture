@@ -2,12 +2,12 @@ package com.jeeson.android.mvp.demo.mvp.presenter;
 
 import android.app.Application;
 
-import com.jeeson.android.mvp.base.AppManager;
 import com.jeeson.android.mvp.base.DefaultAdapter;
 import com.jeeson.android.mvp.demo.mvp.contract.UserContract;
 import com.jeeson.android.mvp.demo.mvp.model.entity.User;
 import com.jeeson.android.mvp.demo.mvp.ui.adapter.UserAdapter;
 import com.jeeson.android.mvp.di.scope.ActivityScope;
+import com.jeeson.android.mvp.integration.AppManager;
 import com.jeeson.android.mvp.mvp.BasePresenter;
 import com.jeeson.android.mvp.rxerrorhandler.core.RxErrorHandler;
 import com.jeeson.android.mvp.rxerrorhandler.handler.ErrorHandleSubscriber;
@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * Contact with jess.yan.effort@gmail.com
  */
 @ActivityScope
-public class UserPresenter extends BasePresenter<UserContract.Model, UserContract.View> {
+public class UserPresenter extends BasePresenter<UserContract.Model, UserContract.View> implements UserContract.Presenter{
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
     private Application mApplication;
@@ -38,7 +38,6 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     private DefaultAdapter mAdapter;
     private int lastUserId = 1;
     private boolean isFirst = true;
-
 
     @Inject
     public UserPresenter(UserContract.Model model, UserContract.View rootView, RxErrorHandler handler

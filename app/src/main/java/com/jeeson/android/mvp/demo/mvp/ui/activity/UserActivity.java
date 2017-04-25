@@ -8,14 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.jeeson.android.mvp.base.BaseActivity;
 import com.jeeson.android.mvp.base.DefaultAdapter;
 import com.jeeson.android.mvp.demo.R;
-import com.jeeson.android.mvp.demo.di.component.AppComponent;
-import com.jeeson.android.mvp.demo.mvp.ui.base.WEActivity;
 import com.jeeson.android.mvp.demo.di.component.DaggerUserComponent;
 import com.jeeson.android.mvp.demo.di.module.UserModule;
 import com.jeeson.android.mvp.demo.mvp.contract.UserContract;
-import com.jeeson.android.mvp.demo.mvp.presenter.UserPresenter;
+import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.utils.UiUtils;
 import com.paginate.Paginate;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -24,11 +23,10 @@ import butterknife.BindView;
 
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 import timber.log.Timber;
 
 
-public class UserActivity extends WEActivity<UserPresenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class UserActivity extends BaseActivity<UserContract.Presenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     @Nullable
     @BindView(R.id.recyclerView)
@@ -44,7 +42,7 @@ public class UserActivity extends WEActivity<UserPresenter> implements UserContr
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
         this.mRxPermissions = new RxPermissions(this);
-       DaggerUserComponent
+        DaggerUserComponent
                 .builder()
                 .appComponent(appComponent)
                 .userModule(new UserModule(this))
@@ -81,12 +79,7 @@ public class UserActivity extends WEActivity<UserPresenter> implements UserContr
         Timber.tag(TAG).w("showLoading");
         Observable.just(1)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Integer>() {
-                    @Override
-                    public void call(Integer integer) {
-                        mSwipeRefreshLayout.setRefreshing(true);
-                    }
-                });
+                .subscribe(integer -> mSwipeRefreshLayout.setRefreshing(true));
     }
 
     @Override
@@ -175,3 +168,4 @@ public class UserActivity extends WEActivity<UserPresenter> implements UserContr
         this.mPaginate = null;
     }
 }
+

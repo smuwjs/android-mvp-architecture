@@ -8,7 +8,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 
-import com.jeeson.android.mvp.mvp.Presenter;
+import com.jeeson.android.mvp.di.component.AppComponent;
+import com.jeeson.android.mvp.mvp.IPresenter;
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
 import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
@@ -21,7 +22,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity<P extends Presenter> extends RxAppCompatActivity {
+public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActivity {
     protected final String TAG = this.getClass().getSimpleName();
     protected BaseApplication mApplication;
     private Unbinder mUnbinder;
@@ -65,14 +66,15 @@ public abstract class BaseActivity<P extends Presenter> extends RxAppCompatActiv
         setContentView(initView());
         //绑定到butterknife
         mUnbinder = ButterKnife.bind(this);
-        ComponentInject();//依赖注入
+        setupActivityComponent(mApplication.getAppComponent());//依赖注入
         initData();
     }
 
     /**
-     * 依赖注入的入口
+     * 提供AppComponent(提供所有的单例对象)给子类，进行Component依赖
+     * @param appComponent
      */
-    protected abstract void ComponentInject();
+    protected abstract void setupActivityComponent(AppComponent appComponent);
 
 
     public void FullScreencall() {

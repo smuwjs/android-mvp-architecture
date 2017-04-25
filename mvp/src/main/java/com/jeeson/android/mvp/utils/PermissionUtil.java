@@ -2,7 +2,7 @@ package com.jeeson.android.mvp.utils;
 
 import android.Manifest;
 
-import com.jeeson.android.mvp.mvp.BaseView;
+import com.jeeson.android.mvp.mvp.IView;
 import com.jeeson.android.mvp.rxerrorhandler.core.RxErrorHandler;
 import com.jeeson.android.mvp.rxerrorhandler.handler.ErrorHandleSubscriber;
 import com.tbruyelle.rxpermissions.RxPermissions;
@@ -28,7 +28,7 @@ public class PermissionUtil {
     /**
      * 请求摄像头权限
      */
-    public static void launchCamera(final RequestPermission requestPermission, RxPermissions rxPermissions, final BaseView view, RxErrorHandler errorHandler) {
+    public static void launchCamera(final RequestPermission requestPermission, RxPermissions rxPermissions, final IView view, RxErrorHandler errorHandler) {
         //先确保是否已经申请过摄像头，和写入外部存储的权限
         boolean isPermissionsGranted =
                 rxPermissions
@@ -61,7 +61,7 @@ public class PermissionUtil {
     /**
      * 请求外部存储的权限
      */
-    public static void externalStorage(final RequestPermission requestPermission, RxPermissions rxPermissions, final BaseView view, RxErrorHandler errorHandler) {
+    public static void externalStorage(final RequestPermission requestPermission, RxPermissions rxPermissions, final IView view, RxErrorHandler errorHandler) {
         //先确保是否已经申请过摄像头，和写入外部存储的权限
         boolean isPermissionsGranted =
                 rxPermissions
@@ -91,7 +91,7 @@ public class PermissionUtil {
     /**
      * 请求发送短信权限
      */
-    public static void sendSms(final RequestPermission requestPermission, RxPermissions rxPermissions, final BaseView view, RxErrorHandler errorHandler) {
+    public static void sendSms(final RequestPermission requestPermission, RxPermissions rxPermissions, final IView view, RxErrorHandler errorHandler) {
 //先确保是否已经申请过权限
         boolean isPermissionsGranted =
                 rxPermissions
@@ -120,7 +120,7 @@ public class PermissionUtil {
     /**
      * 请求打电话权限
      */
-    public static void callPhone(final RequestPermission requestPermission, RxPermissions rxPermissions, final BaseView view, RxErrorHandler errorHandler) {
+    public static void callPhone(final RequestPermission requestPermission, RxPermissions rxPermissions, final IView view, RxErrorHandler errorHandler) {
 //先确保是否已经申请过权限
         boolean isPermissionsGranted =
                 rxPermissions

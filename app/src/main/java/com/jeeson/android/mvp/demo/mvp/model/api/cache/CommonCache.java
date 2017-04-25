@@ -11,10 +11,6 @@ import io.rx_cache.LifeCache;
 import io.rx_cache.Reply;
 import rx.Observable;
 
-/**
- * Created by jess on 8/30/16 13:53
- * Contact with jess.yan.effort@gmail.com
- */
 public interface CommonCache {
 
     @LifeCache(duration = 2, timeUnit = TimeUnit.MINUTES)

@@ -4,6 +4,7 @@ package com.jeeson.android.mvp.demo.di.component;
 
 import com.jeeson.android.mvp.demo.di.module.UserModule;
 import com.jeeson.android.mvp.demo.mvp.ui.activity.UserActivity;
+import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.di.scope.ActivityScope;
 
 import dagger.Component;

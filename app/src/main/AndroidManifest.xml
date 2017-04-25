@@ -42,6 +42,11 @@
             android:name="com.jeeson.android.mvp.widget.imageloader.glide.GlideConfiguration"
             android:value="GlideModule"/>
 
+        <!--global配置-->
+        <meta-data
+            android:name="com.jeeson.android.mvp.demo.app.GlobalConfiguration"
+            android:value="ConfigModule"/>
+
     </application>
 
 </manifest>

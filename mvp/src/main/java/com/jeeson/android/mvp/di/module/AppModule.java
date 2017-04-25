@@ -3,6 +3,8 @@ package com.jeeson.android.mvp.di.module;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.jeeson.android.mvp.integration.IRepositoryManager;
+import com.jeeson.android.mvp.integration.RepositoryManager;
 
 import javax.inject.Singleton;
 
@@ -29,5 +31,11 @@ public class AppModule {
     @Singleton
     @Provides
     public Gson provideGson(){return new Gson();}
+
+    @Singleton
+    @Provides
+    public IRepositoryManager provideRepositoryManager(RepositoryManager repositoryManager) {
+        return repositoryManager;
+    }
 
 }
