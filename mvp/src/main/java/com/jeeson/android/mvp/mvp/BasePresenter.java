@@ -11,7 +11,6 @@ import rx.subscriptions.CompositeSubscription;
 public class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
     protected final String TAG = this.getClass().getSimpleName();
     protected CompositeSubscription mCompositeSubscription;
-
     protected M mModel;
     protected V mRootView;
 

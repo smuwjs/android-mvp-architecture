@@ -14,6 +14,7 @@ import com.jeeson.android.mvp.demo.R;
 import com.jeeson.android.mvp.demo.di.component.DaggerUserComponent;
 import com.jeeson.android.mvp.demo.di.module.UserModule;
 import com.jeeson.android.mvp.demo.mvp.contract.UserContract;
+import com.jeeson.android.mvp.demo.mvp.presenter.UserPresenter;
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.utils.UiUtils;
 import com.paginate.Paginate;
@@ -26,7 +27,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 
-public class UserActivity extends BaseActivity<UserContract.Presenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener {
+public class UserActivity extends BaseActivity<UserPresenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener {
 
     @Nullable
     @BindView(R.id.recyclerView)

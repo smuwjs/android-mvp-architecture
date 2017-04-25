@@ -30,7 +30,7 @@ import rx.schedulers.Schedulers;
  * Contact with jess.yan.effort@gmail.com
  */
 @ActivityScope
-public class UserPresenter extends BasePresenter<UserContract.Model, UserContract.View> implements UserContract.Presenter{
+public class UserPresenter extends BasePresenter<UserContract.Model, UserContract.View> {
     private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
     private Application mApplication;

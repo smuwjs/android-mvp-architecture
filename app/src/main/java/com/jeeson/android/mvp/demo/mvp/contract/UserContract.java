@@ -31,9 +31,4 @@ public interface UserContract {
     interface Model extends IModel {
         Observable<List<User>> getUsers(int lastIdQueried, boolean update);
     }
-
-    //Presenter层定义接口
-    interface Presenter extends IPresenter {
-        void requestUsers(final boolean pullToRefresh);
-    }
 }

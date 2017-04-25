@@ -37,9 +37,4 @@ public class UserModule {
         return model;
     }
 
-    @ActivityScope
-    @Provides
-    UserContract.Presenter provideUserPresenter(UserPresenter presenter){
-        return presenter;
-    }
 }
