@@ -3,7 +3,7 @@ package com.jeeson.android.mvp.integration;
 import android.content.Context;
 
 
-import com.jeeson.android.mvp.utils.Preconditions;
+import com.jeeson.android.kit.Preconditions;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

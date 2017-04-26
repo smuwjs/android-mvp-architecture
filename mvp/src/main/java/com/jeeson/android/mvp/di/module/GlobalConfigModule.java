@@ -17,7 +17,8 @@ import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 
-import static com.jeeson.android.mvp.utils.Preconditions.checkNotNull;
+import static com.jeeson.android.kit.Preconditions.checkNotNull;
+
 
 /**
  * Created by jeeson on 2016/3/14.
