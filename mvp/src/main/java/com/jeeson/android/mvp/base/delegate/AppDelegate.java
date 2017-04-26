@@ -7,7 +7,7 @@ import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.di.component.DaggerAppComponent;
 import com.jeeson.android.mvp.di.module.AppModule;
 import com.jeeson.android.mvp.di.module.ClientModule;
-import com.jeeson.android.mvp.di.module.GlobeConfigModule;
+import com.jeeson.android.mvp.di.module.GlobalConfigModule;
 import com.jeeson.android.mvp.di.module.ImageModule;
 import com.jeeson.android.mvp.integration.ActivityLifecycle;
 import com.jeeson.android.mvp.integration.ConfigModule;
@@ -51,7 +51,7 @@ public class AppDelegate {
                 .appModule(new AppModule(mApplication))////提供application
                 .clientModule(new ClientModule())//用于提供okhttp和retrofit的单例
                 .imageModule(new ImageModule())//图片加载框架默认使用glide
-                .globeConfigModule(getGlobeConfigModule(mApplication, mModules))//全局配置
+                .globalConfigModule(getGlobalConfigModule(mApplication, mModules))//全局配置
                 .build();
         mAppComponent.inject(this);
 
@@ -89,11 +89,10 @@ public class AppDelegate {
      *
      * @return
      */
-    private GlobeConfigModule getGlobeConfigModule(Application context, List<ConfigModule> modules) {
+    private GlobalConfigModule getGlobalConfigModule(Application context, List<ConfigModule> modules) {
 
-        GlobeConfigModule.Builder builder = GlobeConfigModule
-                .builder()
-                .baseurl("https://api.github.com");//为了防止用户没有通过GlobeConfigModule配置baseurl,而导致报错,所以提前配置个默认baseurl
+        GlobalConfigModule.Builder builder = GlobalConfigModule
+                .builder();
 
         for (ConfigModule module : modules) {
             module.applyOptions(context, builder);
@@ -120,4 +119,5 @@ public class AppDelegate {
     }
 
 }
+
 

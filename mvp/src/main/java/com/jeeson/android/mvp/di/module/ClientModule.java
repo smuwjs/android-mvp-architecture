@@ -1,13 +1,10 @@
 package com.jeeson.android.mvp.di.module;
 
-import android.app.Application;
 
 
 import com.jeeson.android.kit.DataHelper;
-import com.jeeson.android.mvp.http.GlobeHttpHandler;
+import com.jeeson.android.mvp.http.GlobalHttpHandler;
 import com.jeeson.android.mvp.http.RequestInterceptor;
-import com.jeeson.android.mvp.rxerrorhandler.core.RxErrorHandler;
-import com.jeeson.android.mvp.rxerrorhandler.handler.listener.ResponseErroListener;
 
 import java.io.File;
 import java.util.List;
@@ -18,17 +15,17 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.rx_cache.internal.RxCache;
+import io.rx_cache2.internal.RxCache;
 import io.victoralbertos.jolyglot.GsonSpeaker;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by jeeson on 2016/3/14.
+ * Created by jessyan on 2016/3/14.
  */
 @Module
 public class ClientModule {
@@ -50,7 +47,7 @@ public class ClientModule {
         return builder
                 .baseUrl(httpUrl)//域名
                 .client(client)//设置okhttp
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())//使用rxjava
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用rxjava2
                 .addConverterFactory(GsonConverterFactory.create())//使用Gson
                 .build();
     }
@@ -64,7 +61,7 @@ public class ClientModule {
     @Singleton
     @Provides
     OkHttpClient provideClient(OkHttpClient.Builder okHttpClient, Interceptor intercept
-            , List<Interceptor> interceptors, GlobeHttpHandler handler) {
+            , List<Interceptor> interceptors, GlobalHttpHandler handler) {
         OkHttpClient.Builder builder = okHttpClient
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 .readTimeout(TIME_OUT, TimeUnit.SECONDS)
@@ -124,21 +121,6 @@ public class ClientModule {
     File provideRxCacheDirectory(File cacheDir) {
         File cacheDirectory = new File(cacheDir, "RxCache");
         return DataHelper.makeDirs(cacheDirectory);
-    }
-
-    /**
-     * 提供处理Rxjava错误的管理器
-     *
-     * @return
-     */
-    @Singleton
-    @Provides
-    RxErrorHandler proRxErrorHandler(Application application, ResponseErroListener listener) {
-        return RxErrorHandler
-                .builder()
-                .with(application)
-                .responseErroListener(listener)
-                .build();
     }
 
 

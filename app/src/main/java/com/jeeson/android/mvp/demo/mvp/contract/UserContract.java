@@ -3,22 +3,19 @@ package com.jeeson.android.mvp.demo.mvp.contract;
 
 import com.jeeson.android.mvp.base.DefaultAdapter;
 import com.jeeson.android.mvp.demo.mvp.model.entity.User;
-import com.jeeson.android.mvp.mvp.IPresenter;
-import com.jeeson.android.mvp.mvp.IView;
 import com.jeeson.android.mvp.mvp.IModel;
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.jeeson.android.mvp.mvp.IView;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.List;
 
-import rx.Observable;
-
+import io.reactivex.Observable;
 
 /**
  * Created by jess on 9/4/16 10:47
  * Contact with jess.yan.effort@gmail.com
  */
 public interface UserContract {
-
     //对于经常使用的关于UI的方法可以定义到BaseView中,如显示隐藏进度条,和显示文字消息
     interface View extends IView {
         void setAdapter(DefaultAdapter adapter);

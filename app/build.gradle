@@ -48,24 +48,22 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
-    // android support libraries
-    compile rootProject.ext.dependencies["support-annotations"]
-
-    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    // tools
     provided rootProject.ext.dependencies["javax.annotation"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-apt"]
-
-    debugCompile rootProject.ext.dependencies["canary-debug"]
-    releaseCompile rootProject.ext.dependencies["canary-release"]
-    testCompile rootProject.ext.dependencies["canary-release"]
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    annotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    testAnnotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    androidTestAnnotationProcessor rootProject.ext.dependencies["dagger-compiler"]
 
     // dependencies for local unit tests
     testCompile rootProject.ext.dependencies["junit"]
     testCompile rootProject.ext.dependencies["mockito-core"]
-    testAnnotationProcessor rootProject.ext.dependencies["dagger-compiler"]
-    androidTestAnnotationProcessor rootProject.ext.dependencies["dagger-compiler"]
+    debugCompile rootProject.ext.dependencies["canary-debug"]
+    releaseCompile rootProject.ext.dependencies["canary-release"]
+    testCompile rootProject.ext.dependencies["canary-release"]
 
     // UI Testing
+    androidTestCompile rootProject.ext.dependencies["support-annotations"]
     androidTestCompile rootProject.ext.dependencies["espresso-core"]
     androidTestCompile rootProject.ext.dependencies["espresso-intents"]
     androidTestCompile rootProject.ext.dependencies["mockito-core"]

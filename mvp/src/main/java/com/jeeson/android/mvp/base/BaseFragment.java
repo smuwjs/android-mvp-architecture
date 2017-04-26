@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.mvp.IPresenter;
-import com.trello.rxlifecycle.components.support.RxFragment;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 import org.simple.eventbus.EventBus;
 

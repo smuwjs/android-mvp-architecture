@@ -31,10 +31,10 @@ import static com.jeeson.android.kit.CharactorHandler.jsonFormat;
  */
 @Singleton
 public class RequestIntercept implements Interceptor {
-    private GlobeHttpHandler mHandler;
+    private GlobalHttpHandler mHandler;
 
     @Inject
-    public RequestIntercept(GlobeHttpHandler handler) {
+    public RequestIntercept(GlobalHttpHandler handler) {
         this.mHandler = handler;
     }
 

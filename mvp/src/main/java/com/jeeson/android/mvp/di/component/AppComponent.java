@@ -6,11 +6,11 @@ import com.google.gson.Gson;
 import com.jeeson.android.mvp.base.delegate.AppDelegate;
 import com.jeeson.android.mvp.di.module.AppModule;
 import com.jeeson.android.mvp.di.module.ClientModule;
-import com.jeeson.android.mvp.di.module.GlobeConfigModule;
+import com.jeeson.android.mvp.di.module.GlobalConfigModule;
+import com.jeeson.android.mvp.di.module.GlobalConfigModule;
 import com.jeeson.android.mvp.di.module.ImageModule;
 import com.jeeson.android.mvp.integration.AppManager;
 import com.jeeson.android.mvp.integration.IRepositoryManager;
-import com.jeeson.android.mvp.rxerrorhandler.core.RxErrorHandler;
 import com.jeeson.android.mvp.widget.imageloader.ImageLoader;
 
 import java.io.File;
@@ -24,16 +24,12 @@ import okhttp3.OkHttpClient;
  * Created by jess on 8/4/16.
  */
 @Singleton
-@Component(modules = {AppModule.class, ClientModule.class, ImageModule.class, GlobeConfigModule.class})
+@Component(modules = {AppModule.class, ClientModule.class, ImageModule.class, GlobalConfigModule.class})
 public interface AppComponent {
     Application Application();
 
     //用于管理网络请求层,以及数据缓存层
     IRepositoryManager repositoryManager();
-
-    //Rxjava错误处理管理类
-    RxErrorHandler rxErrorHandler();
-
 
     OkHttpClient okHttpClient();
 

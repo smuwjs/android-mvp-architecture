@@ -2,9 +2,8 @@ package com.jeeson.android.mvp.integration;
 
 import android.content.Context;
 
-
 import com.jeeson.android.mvp.base.delegate.AppDelegate;
-import com.jeeson.android.mvp.di.module.GlobeConfigModule;
+import com.jeeson.android.mvp.di.module.GlobalConfigModule;
 
 import java.util.List;
 
@@ -16,11 +15,11 @@ import java.util.List;
 
 public interface ConfigModule {
     /**
-     * 使用{@link GlobeConfigModule.Builder}给框架配置一些配置参数
+     * 使用{@link GlobalConfigModule.Builder}给框架配置一些配置参数
      * @param context
      * @param builder
      */
-    void applyOptions(Context context, GlobeConfigModule.Builder builder);
+    void applyOptions(Context context, GlobalConfigModule.Builder builder);
 
     /**
      * 使用{@link IRepositoryManager}给框架注入一些网络请求和数据缓存等服务

@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
+
 import com.jeeson.android.mvp.base.BaseActivity;
 import com.jeeson.android.mvp.base.DefaultAdapter;
 import com.jeeson.android.mvp.demo.R;
@@ -18,12 +19,12 @@ import com.jeeson.android.mvp.demo.mvp.presenter.UserPresenter;
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.utils.UiUtils;
 import com.paginate.Paginate;
-import com.tbruyelle.rxpermissions.RxPermissions;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
 import timber.log.Timber;
 
 
@@ -169,4 +170,3 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
         this.mPaginate = null;
     }
 }
-

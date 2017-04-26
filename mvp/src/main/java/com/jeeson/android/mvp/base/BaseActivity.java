@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.mvp.IPresenter;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
