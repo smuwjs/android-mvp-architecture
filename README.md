@@ -2,7 +2,7 @@
 [ ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat-square) ](https://developer.android.com/about/versions/android-4.0.3.html)
 [ ![License](http://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square) ](http://www.apache.org/licenses/LICENSE-2.0)
 
-A common Architecture for Android Applications developing based on MVP，integrates many Open Source Projects( like Dagger2,Rxjava,Retrofit... ),to make your developing quicker and easier. 
+This repository contains a detailed sample app that implements MVP architecture using Dagger2, RxJava, Retrofit and so on, to make your developing quicker and easier.
 
 ## Architectural
 <img src="https://github.com/smuwjs/android-mvp-architecture/raw/master/image/architecture.png" width="80%" height="80%">
