@@ -61,6 +61,7 @@ dependencies {
     compile rootProject.ext.dependencies["rxbinding-appcompat-v7"]
     compile rootProject.ext.dependencies["rxbinding-design"]
     compile rootProject.ext.dependencies["rxbinding-recyclerview-v7"]
+    compile rootProject.ext.dependencies['rxerrorhandler']
     //network
     compile rootProject.ext.dependencies["retrofit"]
     compile rootProject.ext.dependencies["retrofit-converter-gson"]

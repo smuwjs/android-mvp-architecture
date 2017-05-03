@@ -7,13 +7,12 @@ import com.jeeson.android.mvp.base.delegate.AppDelegate;
 import com.jeeson.android.mvp.di.module.AppModule;
 import com.jeeson.android.mvp.di.module.ClientModule;
 import com.jeeson.android.mvp.di.module.GlobalConfigModule;
-import com.jeeson.android.mvp.di.module.GlobalConfigModule;
-import com.jeeson.android.mvp.di.module.ImageModule;
 import com.jeeson.android.mvp.integration.AppManager;
 import com.jeeson.android.mvp.integration.IRepositoryManager;
 import com.jeeson.android.mvp.widget.imageloader.ImageLoader;
 
 import java.io.File;
+import java.util.Map;
 
 import javax.inject.Singleton;
 
@@ -24,7 +23,7 @@ import okhttp3.OkHttpClient;
  * Created by jess on 8/4/16.
  */
 @Singleton
-@Component(modules = {AppModule.class, ClientModule.class, ImageModule.class, GlobalConfigModule.class})
+@Component(modules = {AppModule.class, ClientModule.class,  GlobalConfigModule.class})
 public interface AppComponent {
     Application Application();
 
@@ -44,6 +43,9 @@ public interface AppComponent {
 
     //用于管理所有activity
     AppManager appManager();
+
+    //用来存取一些整个App公用的数据,切勿大量存放大容量数据
+    Map<String, Object> extras();
 
     void inject(AppDelegate delegate);
 }

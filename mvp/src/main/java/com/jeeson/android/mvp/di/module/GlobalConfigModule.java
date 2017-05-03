@@ -5,6 +5,8 @@ import android.text.TextUtils;
 
 import com.jeeson.android.kit.DataHelper;
 import com.jeeson.android.mvp.http.GlobalHttpHandler;
+import com.jeeson.android.mvp.widget.imageloader.BaseImageLoaderStrategy;
+import com.jeeson.android.mvp.widget.imageloader.glide.GlideImageLoaderStrategy;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import me.xiaobailong24.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 
@@ -26,9 +29,15 @@ import static com.jeeson.android.kit.Preconditions.checkNotNull;
 @Module
 public class GlobalConfigModule {
     private HttpUrl mApiUrl;
+    private BaseImageLoaderStrategy mLoaderStrategy;
     private GlobalHttpHandler mHandler;
     private List<Interceptor> mInterceptors;
+    private ResponseErrorListener mErrorListener;
     private File mCacheFile;
+    private ClientModule.RetrofitConfiguration mRetrofitConfiguration;
+    private ClientModule.OkhttpConfiguration mOkhttpConfiguration;
+    private ClientModule.RxCacheConfiguration mRxCacheConfiguration;
+    private AppModule.GsonConfiguration mGsonConfiguration;
 
     /**
      * @author: jess
@@ -37,9 +46,15 @@ public class GlobalConfigModule {
      */
     private GlobalConfigModule(Builder builder) {
         this.mApiUrl = builder.apiUrl;
+        this.mLoaderStrategy = builder.loaderStrategy;
         this.mHandler = builder.handler;
         this.mInterceptors = builder.interceptors;
+        this.mErrorListener = builder.responseErrorListener;
         this.mCacheFile = builder.cacheFile;
+        this.mRetrofitConfiguration = builder.retrofitConfiguration;
+        this.mOkhttpConfiguration = builder.okhttpConfiguration;
+        this.mRxCacheConfiguration = builder.rxCacheConfiguration;
+        this.mGsonConfiguration = builder.gsonConfiguration;
     }
 
     public static Builder builder() {
@@ -57,7 +72,14 @@ public class GlobalConfigModule {
     @Singleton
     @Provides
     HttpUrl provideBaseUrl() {
-        return mApiUrl;
+        return mApiUrl == null ? HttpUrl.parse("https://api.github.com/") : mApiUrl;
+    }
+
+
+    @Singleton
+    @Provides
+    BaseImageLoaderStrategy provideImageLoaderStrategy() {//图片加载框架默认使用glide
+        return mLoaderStrategy == null ? new GlideImageLoaderStrategy() : mLoaderStrategy;
     }
 
 
@@ -78,11 +100,54 @@ public class GlobalConfigModule {
     }
 
 
+    /**
+     * 提供处理Rxjava错误的管理器的回调
+     *
+     * @return
+     */
+    @Singleton
+    @Provides
+    ResponseErrorListener provideResponseErrorListener() {
+        return mErrorListener == null ? ResponseErrorListener.EMPTY : mErrorListener;
+    }
+
+
+    @Singleton
+    @Provides
+    ClientModule.RetrofitConfiguration provideRetrofitConfiguration() {
+        return mRetrofitConfiguration == null ? ClientModule.RetrofitConfiguration.EMPTY : mRetrofitConfiguration;
+    }
+
+    @Singleton
+    @Provides
+    ClientModule.OkhttpConfiguration provideOkhttpConfiguration() {
+        return mOkhttpConfiguration == null ? ClientModule.OkhttpConfiguration.EMPTY : mOkhttpConfiguration;
+    }
+
+    @Singleton
+    @Provides
+    ClientModule.RxCacheConfiguration provideRxCacheConfiguration() {
+        return mRxCacheConfiguration == null ? ClientModule.RxCacheConfiguration.EMPTY : mRxCacheConfiguration;
+    }
+
+    @Singleton
+    @Provides
+    AppModule.GsonConfiguration provideGsonConfiguration() {
+        return mGsonConfiguration == null ? AppModule.GsonConfiguration.EMPTY : mGsonConfiguration;
+    }
+
+
     public static final class Builder {
-        private HttpUrl apiUrl = HttpUrl.parse("https://api.github.com/");
+        private HttpUrl apiUrl;
+        private BaseImageLoaderStrategy loaderStrategy;
         private GlobalHttpHandler handler;
         private List<Interceptor> interceptors = new ArrayList<>();
+        private ResponseErrorListener responseErrorListener;
         private File cacheFile;
+        private ClientModule.RetrofitConfiguration retrofitConfiguration;
+        private ClientModule.OkhttpConfiguration okhttpConfiguration;
+        private ClientModule.RxCacheConfiguration rxCacheConfiguration;
+        private AppModule.GsonConfiguration gsonConfiguration;
 
         private Builder() {
         }
@@ -92,6 +157,11 @@ public class GlobalConfigModule {
                 throw new IllegalArgumentException("baseurl can not be empty");
             }
             this.apiUrl = HttpUrl.parse(baseurl);
+            return this;
+        }
+
+        public Builder imageLoaderStrategy(BaseImageLoaderStrategy loaderStrategy) {//用来请求网络图片
+            this.loaderStrategy = loaderStrategy;
             return this;
         }
 
@@ -106,14 +176,39 @@ public class GlobalConfigModule {
         }
 
 
+        public Builder responseErrorListener(ResponseErrorListener listener) {//处理所有Rxjava的onError逻辑
+            this.responseErrorListener = listener;
+            return this;
+        }
+
+
         public Builder cacheFile(File cacheFile) {
             this.cacheFile = cacheFile;
             return this;
         }
 
+        public Builder retrofitConfiguration(ClientModule.RetrofitConfiguration retrofitConfiguration) {
+            this.retrofitConfiguration = retrofitConfiguration;
+            return this;
+        }
+
+        public Builder okhttpConfiguration(ClientModule.OkhttpConfiguration okhttpConfiguration) {
+            this.okhttpConfiguration = okhttpConfiguration;
+            return this;
+        }
+
+        public Builder rxCacheConfiguration(ClientModule.RxCacheConfiguration rxCacheConfiguration) {
+            this.rxCacheConfiguration = rxCacheConfiguration;
+            return this;
+        }
+
+        public Builder gsonConfiguration(AppModule.GsonConfiguration gsonConfiguration) {
+            this.gsonConfiguration = gsonConfiguration;
+            return this;
+        }
+
 
         public GlobalConfigModule build() {
-            checkNotNull(apiUrl, "baseurl is required");
             return new GlobalConfigModule(this);
         }
 

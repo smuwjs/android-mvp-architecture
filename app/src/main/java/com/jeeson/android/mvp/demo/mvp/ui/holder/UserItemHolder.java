@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.jeeson.android.mvp.base.BaseHolder;
 import com.jeeson.android.mvp.demo.R;
-import com.jeeson.android.mvp.demo.app.App;
+import com.jeeson.android.mvp.demo.app.DemoApp;
 import com.jeeson.android.mvp.demo.mvp.model.entity.User;
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.widget.imageloader.ImageLoader;
@@ -36,7 +36,7 @@ public class UserItemHolder extends BaseHolder<User> {
     public UserItemHolder(View itemView) {
         super(itemView);
         //可以在任何可以拿到Application的地方,拿到AppComponent,从而得到用Dagger管理的单例对象
-        mAppComponent = ((App) itemView.getContext().getApplicationContext()).getAppComponent();
+        mAppComponent = ((DemoApp) itemView.getContext().getApplicationContext()).getAppComponent();
         mImageLoader = mAppComponent.imageLoader();
     }
 

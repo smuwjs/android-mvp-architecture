@@ -3,12 +3,12 @@ package com.jeeson.android.mvp.base.delegate;
 import android.app.Application;
 
 
+import com.jeeson.android.mvp.base.App;
 import com.jeeson.android.mvp.di.component.AppComponent;
 import com.jeeson.android.mvp.di.component.DaggerAppComponent;
 import com.jeeson.android.mvp.di.module.AppModule;
 import com.jeeson.android.mvp.di.module.ClientModule;
 import com.jeeson.android.mvp.di.module.GlobalConfigModule;
-import com.jeeson.android.mvp.di.module.ImageModule;
 import com.jeeson.android.mvp.integration.ActivityLifecycle;
 import com.jeeson.android.mvp.integration.ConfigModule;
 import com.jeeson.android.mvp.integration.ManifestParser;
@@ -28,19 +28,21 @@ import javax.inject.Inject;
  * Contact with jess.yan.effort@gmail.com
  */
 
-public class AppDelegate {
+public class AppDelegate implements App {
     private Application mApplication;
     private AppComponent mAppComponent;
     @Inject
     protected ActivityLifecycle mActivityLifecycle;
     private final List<ConfigModule> mModules;
-    private List<Lifecycle> mLifecycles = new ArrayList<>();
+    private List<Lifecycle> mAppLifecycles = new ArrayList<>();
+    private List<Application.ActivityLifecycleCallbacks> mActivityLifecycles = new ArrayList<>();
 
     public AppDelegate(Application application) {
         this.mApplication = application;
         this.mModules = new ManifestParser(mApplication).parse();
         for (ConfigModule module : mModules) {
-            module.injectAppLifecycle(mApplication, mLifecycles);
+            module.injectAppLifecycle(mApplication, mAppLifecycles);
+            module.injectActivityLifecycle(mApplication, mActivityLifecycles);
         }
     }
 
@@ -48,21 +50,25 @@ public class AppDelegate {
     public void onCreate() {
         mAppComponent = DaggerAppComponent
                 .builder()
-                .appModule(new AppModule(mApplication))////提供application
+                .appModule(new AppModule(mApplication))//提供application
                 .clientModule(new ClientModule())//用于提供okhttp和retrofit的单例
-                .imageModule(new ImageModule())//图片加载框架默认使用glide
                 .globalConfigModule(getGlobalConfigModule(mApplication, mModules))//全局配置
                 .build();
         mAppComponent.inject(this);
 
+        mAppComponent.extras().put(ConfigModule.class.getName(), mModules);
+
         mApplication.registerActivityLifecycleCallbacks(mActivityLifecycle);
+
+        for (Application.ActivityLifecycleCallbacks lifecycle : mActivityLifecycles) {
+            mApplication.registerActivityLifecycleCallbacks(lifecycle);
+        }
 
         for (ConfigModule module : mModules) {
             module.registerComponents(mApplication, mAppComponent.repositoryManager());
         }
 
-
-        for (Lifecycle lifecycle : mLifecycles) {
+        for (Lifecycle lifecycle : mAppLifecycles) {
             lifecycle.onCreate(mApplication);
         }
 
@@ -73,13 +79,19 @@ public class AppDelegate {
         if (mActivityLifecycle != null) {
             mApplication.unregisterActivityLifecycleCallbacks(mActivityLifecycle);
         }
-        this.mAppComponent = null;
-        this.mActivityLifecycle = null;
-        this.mApplication = null;
-
-        for (Lifecycle lifecycle : mLifecycles) {
+        if (mActivityLifecycles != null && mActivityLifecycles.size() > 0) {
+            for (Application.ActivityLifecycleCallbacks lifecycle : mActivityLifecycles) {
+                mApplication.unregisterActivityLifecycleCallbacks(lifecycle);
+            }
+        }
+        for (Lifecycle lifecycle : mAppLifecycles) {
             lifecycle.onTerminate(mApplication);
         }
+        this.mAppComponent = null;
+        this.mActivityLifecycle = null;
+        this.mActivityLifecycles = null;
+        this.mAppLifecycles = null;
+        this.mApplication = null;
     }
 
 
@@ -107,6 +119,7 @@ public class AppDelegate {
      *
      * @return
      */
+    @Override
     public AppComponent getAppComponent() {
         return mAppComponent;
     }

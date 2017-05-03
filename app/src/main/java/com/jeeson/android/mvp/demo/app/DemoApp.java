@@ -7,10 +7,6 @@ import com.jeeson.android.mvp.base.BaseApplication;
  * @anthor Jeeson Email:smuwjs@163.com
  * @time 2017/4/12 14:53
  */
-public class App extends BaseApplication {
+public class DemoApp extends BaseApplication{
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-    }
 }

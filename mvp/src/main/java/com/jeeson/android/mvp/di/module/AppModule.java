@@ -1,10 +1,15 @@
 package com.jeeson.android.mvp.di.module;
 
 import android.app.Application;
+import android.content.Context;
+import android.support.v4.util.ArrayMap;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jeeson.android.mvp.integration.IRepositoryManager;
 import com.jeeson.android.mvp.integration.RepositoryManager;
+
+import java.util.Map;
 
 import javax.inject.Singleton;
 
@@ -30,12 +35,33 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public Gson provideGson(){return new Gson();}
+    public Gson provideGson(Application application, GsonConfiguration configuration){
+        GsonBuilder builder = new GsonBuilder();
+        configuration.configGson(application, builder);
+        return builder.create();
+    }
 
     @Singleton
     @Provides
     public IRepositoryManager provideRepositoryManager(RepositoryManager repositoryManager) {
         return repositoryManager;
+    }
+
+    @Singleton
+    @Provides
+    public Map<String, Object> provideExtras(){
+        return new ArrayMap<>();
+    }
+
+    public interface GsonConfiguration {
+        GsonConfiguration EMPTY = new GsonConfiguration() {
+            @Override
+            public void configGson(Context context, GsonBuilder builder) {
+
+            }
+        };
+
+        void configGson(Context context, GsonBuilder builder);
     }
 
 }

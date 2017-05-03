@@ -2,7 +2,7 @@ ext {
 
     android = [compileSdkVersion       : 25,
                buildToolsVersion       : "25.0.2",
-               minSdkVersion           : 14,
+               minSdkVersion           : 15,
                targetSdkVersion        : 25,
                versionCode             : 24,
                versionName             : "1.2.4",
@@ -54,6 +54,7 @@ ext {
             "rxbinding-appcompat-v7"   : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${version["rxBindingVersion"]}",
             "rxbinding-design"         : "com.jakewharton.rxbinding2:rxbinding-design:${version["rxBindingVersion"]}",
             "rxbinding-recyclerview-v7": "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${version["rxBindingVersion"]}",
+            "rxerrorhandler"           : "com.github.xiaobailong24:RxErrorHandler:2.0.0",
 
             /*-------   view   -------*/
             "autolayout"               : "com.zhy:autolayout:1.4.5",
