@@ -2,7 +2,7 @@
 [ ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat-square) ](https://developer.android.com/about/versions/android-4.0.3.html)
 [ ![License](http://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square) ](http://www.apache.org/licenses/LICENSE-2.0)
 
-## A common Architecture for Android Applications developing based on MVP，integrates many Open Source Projects( like Dagger2,Rxjava,Retrofit... ),to make your developing quicker and easier. 
+A common Architecture for Android Applications developing based on MVP，integrates many Open Source Projects( like Dagger2,Rxjava,Retrofit... ),to make your developing quicker and easier. 
 
 ## Architectural
 <img src="https://github.com/smuwjs/android-mvp-architecture/raw/master/image/architecture.png" width="80%" height="80%">
@@ -11,7 +11,7 @@
 [JessYanCoding/MVPArms](https://github.com/JessYanCoding/MVPArms)
 
 ## Usage
->> If you are building a new project, directly to the entire project **clone** (or download), as **Demo** as the main module, then the package name into their own package name , **Demo** contains the package structure can be used directly, a mainstream `MVP` +` Dagger2` + `Retrofit` +` Rxjava` framework so easy to build successful, and now you refer **Demo Mvp** Package under the **UserActivity** format,[Use Template to automatically generate MVP, Dagger2 related classes under the corresponding package](http://www.jianshu.com/p/56cf17ab896d),With access to [Wiki documents](https://github.com/JessYanCoding/MVPArms/wiki) slowly grasp the framework to see more articles as soon as possible in the project to use it, in practice, learning is the fastest
+If you are building a new project, directly to the entire project **clone** (or download), as **Demo** as the main module, then the package name into their own package name , **Demo** contains the package structure can be used directly, a mainstream `MVP` +` Dagger2` + `Retrofit` +` Rxjava` framework so easy to build successful, and now you refer **Demo Mvp** Package under the **UserActivity** format,[Use Template to automatically generate MVP, Dagger2 related classes under the corresponding package](http://www.jianshu.com/p/56cf17ab896d),With access to [Wiki documents](https://github.com/JessYanCoding/MVPArms/wiki) slowly grasp the framework to see more articles as soon as possible in the project to use it, in practice, learning is the fastest
 
 ## Wiki
 [Detailed usage reference Wiki](https://github.com/smuwjs/android-mvp-architecture/wiki)
@@ -37,7 +37,7 @@
 17. [`RxErroHandler`](https://github.com/JessYanCoding/RxErrorHandler)
 
 ## Acknowledgements 
-Thanks to all the three libraries used in this framework **Author**, and all for the 'Open Sourece' selfless contributions **Developer** and **Organizations**, so that we can better work and study, I will also spare time return to the open source community
+Thanks to all the three libraries used in this framework **Author**, and all for the 'Open Sourece' selfless contributions **Developer** and **Organizations**, so that we can better work and study, I will also spare time return to the open source community.
 
 ## License
 ``` 
