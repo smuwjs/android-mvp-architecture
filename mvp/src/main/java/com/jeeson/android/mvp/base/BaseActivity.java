@@ -14,9 +14,9 @@ import com.zhy.autolayout.AutoRelativeLayout;
 
 import javax.inject.Inject;
 
-import static com.jeeson.android.mvp.base.delegate.ActivityDelegate.LAYOUT_FRAMELAYOUT;
-import static com.jeeson.android.mvp.base.delegate.ActivityDelegate.LAYOUT_LINEARLAYOUT;
-import static com.jeeson.android.mvp.base.delegate.ActivityDelegate.LAYOUT_RELATIVELAYOUT;
+import static com.jeeson.android.mvp.base.delegate.ActivityDelegate.LAYOUT_FRAME_LAYOUT;
+import static com.jeeson.android.mvp.base.delegate.ActivityDelegate.LAYOUT_LINEAR_LAYOUT;
+import static com.jeeson.android.mvp.base.delegate.ActivityDelegate.LAYOUT_RELATIVE_LAYOUT;
 
 public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActivity implements IActivity {
     protected final String TAG = this.getClass().getSimpleName();
@@ -26,13 +26,13 @@ public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActi
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
         View view = null;
-        if (name.equals(LAYOUT_FRAMELAYOUT)) {
+        if (name.equals(LAYOUT_FRAME_LAYOUT)) {
             view = new AutoFrameLayout(context, attrs);
         }
-        if (name.equals(LAYOUT_LINEARLAYOUT)) {
+        if (name.equals(LAYOUT_LINEAR_LAYOUT)) {
             view = new AutoLinearLayout(context, attrs);
         }
-        if (name.equals(LAYOUT_RELATIVELAYOUT)) {
+        if (name.equals(LAYOUT_RELATIVE_LAYOUT)) {
             view = new AutoRelativeLayout(context, attrs);
         }
         return view == null ? super.onCreateView(name, context, attrs) : view;
@@ -58,7 +58,7 @@ public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActi
 
     /**
      * 这个Activity是否会使用Fragment,框架会根据这个属性判断是否注册{@link android.support.v4.app.FragmentManager.FragmentLifecycleCallbacks}
-     * 如果返回false,那意味着这个Activity不需要绑定Fragment,那你再在这个Activity中绑定继承于 {@link com.jeeson.android.mvp.base.BaseFragment} 的Fragment将不起任何作用
+     * 如果返回false,那意味着这个Activity不需要绑定Fragment,那你再在这个Activity中绑定继承于 {@link BaseFragment} 的Fragment将不起任何作用
      * @return
      */
     @Override

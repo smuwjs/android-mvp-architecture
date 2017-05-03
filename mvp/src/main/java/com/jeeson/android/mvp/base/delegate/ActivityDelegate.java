@@ -10,11 +10,11 @@ import java.io.Serializable;
  */
 
 public interface ActivityDelegate extends Serializable {
-    String LAYOUT_LINEARLAYOUT = "LinearLayout";
-    String LAYOUT_FRAMELAYOUT = "FrameLayout";
-    String LAYOUT_RELATIVELAYOUT = "RelativeLayout";
-    String ACTIVITY_DELEGATE = "activity_delegate";
 
+    String LAYOUT_LINEAR_LAYOUT = "LinearLayout";
+    String LAYOUT_FRAME_LAYOUT = "FrameLayout";
+    String LAYOUT_RELATIVE_LAYOUT = "RelativeLayout";
+    String ACTIVITY_DELEGATE = "activity_delegate";
 
     void onCreate(Bundle savedInstanceState);
 
