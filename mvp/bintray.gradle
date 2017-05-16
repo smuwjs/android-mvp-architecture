@@ -12,7 +12,7 @@ def gitUrl = 'git@github.com:smuwjs/android-mvp-architecture.git'   // Git仓库
 def siteUrl = 'https://github.com/smuwjs/android-mvp-architecture'   // 项目的主页
 
 version = rootProject.ext.android["versionName"]
-group = "me.jeeson.android"
+group = "me.jeeson.android.mvp"
 
 bintray {
     user = isHasFile ? properties.getProperty("bintray.user") : System.getenv("bintray_user")
@@ -21,7 +21,6 @@ bintray {
     pkg {
         repo = 'maven'
         name = 'mvp'
-        //userOrg = 'smuwjs'
         licenses = ["Apache-2.0"]
         websiteUrl = siteUrl
         vcsUrl = gitUrl

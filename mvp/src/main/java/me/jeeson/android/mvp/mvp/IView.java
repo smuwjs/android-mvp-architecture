@@ -1,4 +1,4 @@
-package me.jeeson.android.mvp;
+package me.jeeson.android.mvp.mvp;
 
 import android.content.Intent;
 
