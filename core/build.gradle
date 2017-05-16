@@ -74,3 +74,5 @@ dependencies {
     androidTestCompile rootProject.ext.dependencies["espresso-core"]
 
 }
+
+apply from: "bintray.gradle"

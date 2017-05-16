@@ -34,3 +34,5 @@ dependencies {
     compile project(':core')
 
 }
+
+apply from: "bintray.gradle"
