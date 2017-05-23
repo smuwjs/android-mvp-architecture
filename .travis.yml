@@ -6,7 +6,8 @@ env:
     - ANDROID_API_LEVEL=25
     - ANDROID_BUILD_TOOLS_VERSION=25.0.2
     - TRAVIS_SECURE_ENV_VARS=true
-
+before_install:
+    - chmod +x gradlew
 android:
   components:
     # The BuildTools version used by your project
