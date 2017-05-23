@@ -5,7 +5,7 @@ ext {
                minSdkVersion           : 15,
                targetSdkVersion        : 25,
                versionCode             : 1,
-               versionName             : "1.2.0",
+               versionName             : "1.2.1",
     ]
     version =[
                androidSupportSdkVersion: "25.3.1",
