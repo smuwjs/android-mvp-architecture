@@ -30,11 +30,11 @@ public class ActivityDelegateImpl implements ActivityDelegate {
     public void onCreate(Bundle savedInstanceState) {
         if (iActivity.useEventBus())//如果要使用eventbus请将此方法返回true
             EventBus.getDefault().register(mActivity);//注册到事件主线
-        mActivity.setContentView(iActivity.initView());
+        mActivity.setContentView(iActivity.initView(savedInstanceState));
         //绑定到butterknife
         mUnbinder = ButterKnife.bind(mActivity);
         iActivity.setupActivityComponent(((App) mActivity.getApplication()).getAppComponent());//依赖注入
-        iActivity.initData();
+        iActivity.initData(savedInstanceState);
     }
 
     public void onStart() {

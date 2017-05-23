@@ -1,5 +1,6 @@
 package me.jeeson.android.mvp.base.delegate;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +12,6 @@ import me.jeeson.android.mvp.di.component.AppComponent;
  * Created by jess on 29/04/2017 14:31
  * Contact with jess.yan.effort@gmail.com
  */
-
 public interface IFragment {
     /**
      * 提供AppComponent(提供所有的单例对象)给实现类，进行Component依赖
@@ -21,9 +21,9 @@ public interface IFragment {
 
     boolean useEventBus();
 
-    View initView(LayoutInflater inflater, ViewGroup container);
+    View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
 
-    void initData();
+    void initData(Bundle savedInstanceState);
 
     /**
      * 此方法是让外部调用使fragment做一些操作的,比如说外部的activity想让fragment对象执行一些方法,
@@ -32,8 +32,7 @@ public interface IFragment {
      *
      * 使用此方法时请注意调用时fragment的生命周期,如果调用此setData方法时onActivityCreated
      * 还没执行,setData里调用presenter的方法时,是会报空的,因为dagger注入是在onActivityCreated
-     * 方法中执行的,如果要做一些初始化操作,可以不必让外部调setData,在内部onActivityCreated中
-     * 初始化就可以了
+     * 方法中执行的,如果要做一些初始化操作,可以不必让外部调setData,在initData中初始化就可以了
      *
      * @param data
      */

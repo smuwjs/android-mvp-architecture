@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import me.jeeson.android.mvp.base.App;
 import me.jeeson.android.mvp.base.delegate.AppDelegate;
 import me.jeeson.android.mvp.demo.BuildConfig;
 import me.jeeson.android.mvp.demo.R;
@@ -43,7 +44,11 @@ import timber.log.Timber;
 
 /**
  * app的全局配置信息在此配置,需要将此实现类声明到AndroidManifest中
+ * Created by jess on 12/04/2017 17:25
+ * Contact with jess.yan.effort@gmail.com
  */
+
+
 public class GlobalConfiguration implements ConfigModule {
     @Override
     public void applyOptions(Context context, GlobalConfigModule.Builder builder) {
@@ -74,9 +79,7 @@ public class GlobalConfiguration implements ConfigModule {
                         create a new request and modify it accordingly using the new token
                         Request newRequest = chain.request().newBuilder().header("token", newToken)
                                              .build();
-
                         retry the request
-
                         response.body().close();
                         如果使用okhttp将新的请求,请求成功后,将返回的response  return出去即可
                         如果不需要返回新的结果,则直接把response参数返回出去 */
@@ -93,13 +96,13 @@ public class GlobalConfiguration implements ConfigModule {
                         return request;
                     }
                 })
-                .responseErrorListener((context1, e) -> {
+                .responseErroListener((context1, e) -> {
                     /* 用来提供处理所有错误的监听
                        rxjava必要要使用ErrorHandleSubscriber(默认实现Subscriber的onError方法),此监听才生效 */
                     Timber.w("------------>" + e.getMessage());
                     UiUtils.SnackbarText("net error");
                 })
-                .gsonConfiguration((context1, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
+                .gsonConfiguration((context12, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
                     gsonBuilder
                             .serializeNulls()//支持序列化null的参数
                             .enableComplexMapKeySerialization();//支持将序列化key为object的map,默认只能序列化key为string的map
@@ -109,10 +112,9 @@ public class GlobalConfiguration implements ConfigModule {
                 })
                 .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
                     okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
-                })
-                .rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置RxCache的参数
-                    rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
-                });
+                }).rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置RxCache的参数
+            rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
+        });
     }
 
     @Override
@@ -132,7 +134,7 @@ public class GlobalConfiguration implements ConfigModule {
                     Timber.plant(new Timber.DebugTree());
                 }
                 //leakCanary内存泄露检查
-                ((DemoApp) application).getAppComponent().extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
+                ((App) application).getAppComponent().extras().put(RefWatcher.class.getName(), BuildConfig.USE_CANARY ? LeakCanary.install(application) : RefWatcher.DISABLED);
             }
 
             @Override
@@ -205,10 +207,20 @@ public class GlobalConfiguration implements ConfigModule {
     @Override
     public void injectFragmentLifecycle(Context context, List<FragmentManager.FragmentLifecycleCallbacks> lifecycles) {
         lifecycles.add(new FragmentManager.FragmentLifecycleCallbacks() {
+
+            @Override
+            public void onFragmentCreated(FragmentManager fm, Fragment f, Bundle savedInstanceState) {
+                // 在配置变化的时候将这个 Fragment 保存下来,在 Activity 由于配置变化重建是重复利用已经创建的Fragment。
+                // https://developer.android.com/reference/android/app/Fragment.html?hl=zh-cn#setRetainInstance(boolean)
+                // 在 Activity 中绑定少量的 Fragment 建议这样做,如果需要绑定较多的 Fragment 不建议设置此参数,如 ViewPager 需要展示较多 Fragment
+                f.setRetainInstance(true);
+            }
+
             @Override
             public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-                ((RefWatcher)((DemoApp) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
+                ((RefWatcher)((App) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
             }
         });
     }
+
 }

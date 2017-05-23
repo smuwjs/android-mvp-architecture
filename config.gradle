@@ -8,7 +8,7 @@ ext {
                versionName             : "1.0.1",
     ]
     version =[
-               androidSupportSdkVersion: "25.3.0",
+               androidSupportSdkVersion: "25.3.1",
                retrofitSdkVersion      : "2.2.0",
                dagger2SdkVersion       : "2.8",
                rxlifecycleSdkVersion   : "2.0.1",
@@ -54,7 +54,7 @@ ext {
             "rxbinding-appcompat-v7"   : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${version["rxBindingVersion"]}",
             "rxbinding-design"         : "com.jakewharton.rxbinding2:rxbinding-design:${version["rxBindingVersion"]}",
             "rxbinding-recyclerview-v7": "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${version["rxBindingVersion"]}",
-            "rxerrorhandler"           : "com.github.xiaobailong24:RxErrorHandler:2.0.0",
+            "rxerrorhandler"           : "me.jessyan:rxerrorhandler:2.0.1",
 
             /*-------   view   -------*/
             "autolayout"               : "com.zhy:autolayout:1.4.5",

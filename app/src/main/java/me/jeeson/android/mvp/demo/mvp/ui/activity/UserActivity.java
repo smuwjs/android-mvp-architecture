@@ -1,6 +1,7 @@
 package me.jeeson.android.mvp.demo.mvp.ui.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
@@ -49,14 +50,16 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
     }
 
     @Override
-    public int initView() {
+    public int initView(Bundle savedInstanceState) {
         return R.layout.activity_user;
     }
 
     @Override
-    public void initData() {
+    public void initData(Bundle savedInstanceState) {
         mPresenter.requestUsers(true);//打开app时自动加载列表
     }
+
+
 
     @Override
     public void onRefresh() {

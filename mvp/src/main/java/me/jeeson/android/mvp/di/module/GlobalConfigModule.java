@@ -16,12 +16,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import me.xiaobailong24.rxerrorhandler.handler.listener.ResponseErrorListener;
+
+import me.jessyan.rxerrorhandler.handler.listener.ResponseErroListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
-
-import static me.jeeson.android.mvp.core.util.Preconditions.checkNotNull;
-
 
 /**
  * Created by jeeson on 2016/3/14.
@@ -32,7 +30,7 @@ public class GlobalConfigModule {
     private BaseImageLoaderStrategy mLoaderStrategy;
     private GlobalHttpHandler mHandler;
     private List<Interceptor> mInterceptors;
-    private ResponseErrorListener mErrorListener;
+    private ResponseErroListener mErroListener;
     private File mCacheFile;
     private ClientModule.RetrofitConfiguration mRetrofitConfiguration;
     private ClientModule.OkhttpConfiguration mOkhttpConfiguration;
@@ -49,7 +47,7 @@ public class GlobalConfigModule {
         this.mLoaderStrategy = builder.loaderStrategy;
         this.mHandler = builder.handler;
         this.mInterceptors = builder.interceptors;
-        this.mErrorListener = builder.responseErrorListener;
+        this.mErroListener = builder.responseErroListener;
         this.mCacheFile = builder.cacheFile;
         this.mRetrofitConfiguration = builder.retrofitConfiguration;
         this.mOkhttpConfiguration = builder.okhttpConfiguration;
@@ -107,8 +105,8 @@ public class GlobalConfigModule {
      */
     @Singleton
     @Provides
-    ResponseErrorListener provideResponseErrorListener() {
-        return mErrorListener == null ? ResponseErrorListener.EMPTY : mErrorListener;
+    ResponseErroListener provideResponseErroListener() {
+        return mErroListener == null ? ResponseErroListener.EMPTY : mErroListener;
     }
 
 
@@ -142,7 +140,7 @@ public class GlobalConfigModule {
         private BaseImageLoaderStrategy loaderStrategy;
         private GlobalHttpHandler handler;
         private List<Interceptor> interceptors = new ArrayList<>();
-        private ResponseErrorListener responseErrorListener;
+        private ResponseErroListener responseErroListener;
         private File cacheFile;
         private ClientModule.RetrofitConfiguration retrofitConfiguration;
         private ClientModule.OkhttpConfiguration okhttpConfiguration;
@@ -176,8 +174,8 @@ public class GlobalConfigModule {
         }
 
 
-        public Builder responseErrorListener(ResponseErrorListener listener) {//处理所有Rxjava的onError逻辑
-            this.responseErrorListener = listener;
+        public Builder responseErroListener(ResponseErroListener listener) {//处理所有Rxjava的onError逻辑
+            this.responseErroListener = listener;
             return this;
         }
 

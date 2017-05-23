@@ -20,8 +20,9 @@ import dagger.Module;
 import dagger.Provides;
 import io.rx_cache2.internal.RxCache;
 import io.victoralbertos.jolyglot.GsonSpeaker;
-import me.xiaobailong24.rxerrorhandler.core.RxErrorHandler;
-import me.xiaobailong24.rxerrorhandler.handler.listener.ResponseErrorListener;
+
+import me.jessyan.rxerrorhandler.core.RxErrorHandler;
+import me.jessyan.rxerrorhandler.handler.listener.ResponseErroListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -73,7 +74,9 @@ public class ClientModule {
                 .addInterceptor(chain -> chain.proceed(handler.onHttpRequestBefore(chain, chain.request())))
                 .addNetworkInterceptor(intercept);
         if (interceptors != null && interceptors.size() > 0) {//如果外部提供了interceptor的数组则遍历添加
-            interceptors.forEach(builder::addInterceptor);
+            for (Interceptor interceptor : interceptors) {
+                builder.addInterceptor(interceptor);
+            }
         }
         configuration.configOkhttp(application, builder);
         return builder.build();
@@ -136,11 +139,11 @@ public class ClientModule {
      */
     @Singleton
     @Provides
-    RxErrorHandler proRxErrorHandler(Application application, ResponseErrorListener listener) {
+    RxErrorHandler proRxErrorHandler(Application application, ResponseErroListener listener) {
         return RxErrorHandler
                 .builder()
                 .with(application)
-                .responseErrorListener(listener)
+                .responseErroListener(listener)
                 .build();
     }
 

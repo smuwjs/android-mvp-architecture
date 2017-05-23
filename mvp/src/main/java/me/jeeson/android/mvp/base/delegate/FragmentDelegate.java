@@ -2,6 +2,7 @@ package me.jeeson.android.mvp.base.delegate;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 
 import java.io.Serializable;
@@ -11,7 +12,7 @@ import java.io.Serializable;
  * Contact with jess.yan.effort@gmail.com
  */
 
-public interface FragmentDelegate extends Serializable{
+public interface FragmentDelegate extends Parcelable {
 
     String FRAGMENT_DELEGATE = "fragment_delegate";
 
@@ -38,4 +39,9 @@ public interface FragmentDelegate extends Serializable{
     void onDestroy();
 
     void onDetach();
+
+    /**
+     * Return true if the fragment is currently added to its activity.
+     */
+    boolean isAdded();
 }
