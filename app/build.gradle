@@ -68,6 +68,10 @@ dependencies {
     androidTestCompile rootProject.ext.dependencies["espresso-intents"]
     androidTestCompile rootProject.ext.dependencies["mockito-core"]
 
+    //compile "me.jeeson.android.mvp:mvp:1.2.0"
+    //compile "me.jeeson.android.mvp:widget:1.2.0"
+    //compile "me.jeeson.android.mvp:core:1.2.0"
+
     compile project(':mvp')
     compile project(':widget')
     compile project(':core')
