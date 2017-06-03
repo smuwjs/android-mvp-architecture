@@ -22,6 +22,10 @@ android:
   licenses:
     - '.+'
 
+deploy:
+  on:
+    tags: true
+
 script:
     - ./gradlew clean
     - ./gradlew install
