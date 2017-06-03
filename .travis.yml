@@ -22,12 +22,8 @@ android:
   licenses:
     - '.+'
 
-deploy:
-  on:
-    tags: true
-
 script:
     - ./gradlew clean
-    - ./gradlew install
-    - ./gradlew bintrayUpload
+    #- ./gradlew install
+    #- ./gradlew bintrayUpload
     - ./gradlew assembleDebug
