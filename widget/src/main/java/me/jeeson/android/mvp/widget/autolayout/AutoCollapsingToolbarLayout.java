@@ -9,7 +9,7 @@ import com.zhy.autolayout.AutoLayoutInfo;
 import com.zhy.autolayout.utils.AutoLayoutHelper;
 
 /**
- * Created by jeeson on 16/4/14.
+ * Created by Jeeson 16/4/14.
  */
 public class AutoCollapsingToolbarLayout extends CollapsingToolbarLayout {
     private AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
@@ -43,7 +43,7 @@ public class AutoCollapsingToolbarLayout extends CollapsingToolbarLayout {
 
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams(getContext(), attrs);
+        return new AutoCollapsingToolbarLayout.LayoutParams(getContext(), attrs);
     }
 
 
@@ -77,7 +77,7 @@ public class AutoCollapsingToolbarLayout extends CollapsingToolbarLayout {
             super(source);
         }
 
-        public LayoutParams(ViewGroup.MarginLayoutParams source)
+        public LayoutParams(MarginLayoutParams source)
         {
             super(source);
         }

@@ -1,16 +1,15 @@
 package me.jeeson.android.mvp.demo.di.module;
 
-
-import me.jeeson.android.mvp.demo.mvp.contract.UserContract;
-import me.jeeson.android.mvp.demo.mvp.model.UserModel;
-import me.jeeson.android.mvp.di.scope.ActivityScope;
+import me.jeeson.android.mvp.arch.di.scope.ActivityScope;
 
 import dagger.Module;
 import dagger.Provides;
+import me.jeeson.android.mvp.demo.mvp.contract.UserContract;
+import me.jeeson.android.mvp.demo.mvp.model.UserModel;
 
 /**
- * Created by jess on 9/4/16 11:10
- * Contact with jess.yan.effort@gmail.com
+ * Created by Jeeson 9/4/16 11:10
+ * Contact with smuwjs@163.com
  */
 @Module
 public class UserModule {
@@ -35,5 +34,4 @@ public class UserModule {
     UserContract.Model provideUserModel(UserModel model){
         return model;
     }
-
 }

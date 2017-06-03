@@ -20,17 +20,21 @@ public class DataHelper {
     private static SharedPreferences mSharedPreferences;
     public static final String SP_NAME = "config";
 
+
+    private DataHelper() {
+    }
+
     /**
      * 存储重要信息到sharedPreferences；
      *
      * @param key
      * @param value
      */
-    public static void SetStringSF(Context context, String key, String value) {
+    public static void setStringSF(Context context, String key, String value) {
         if (mSharedPreferences == null) {
             mSharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         }
-        mSharedPreferences.edit().putString(key, value).commit();
+        mSharedPreferences.edit().putString(key, value).apply();
     }
 
     /**
@@ -52,11 +56,11 @@ public class DataHelper {
      * @param key
      * @param value
      */
-    public static void SetIntergerSF(Context context, String key, int value) {
+    public static void setIntergerSF(Context context, String key, int value) {
         if (mSharedPreferences == null) {
             mSharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         }
-        mSharedPreferences.edit().putInt(key, value).commit();
+        mSharedPreferences.edit().putInt(key, value).apply();
     }
 
     /**
@@ -79,7 +83,7 @@ public class DataHelper {
         if (mSharedPreferences == null) {
             mSharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         }
-        mSharedPreferences.edit().remove(key).commit();
+        mSharedPreferences.edit().remove(key).apply();
     }
 
     /**
@@ -89,7 +93,7 @@ public class DataHelper {
         if (mSharedPreferences == null) {
             mSharedPreferences = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         }
-        mSharedPreferences.edit().clear().commit();
+        mSharedPreferences.edit().clear().apply();
     }
 
     /**
@@ -112,7 +116,7 @@ public class DataHelper {
             // 将字节流编码成base64的字符串
             String oAuth_Base64 = new String(Base64.encode(baos
                     .toByteArray(), Base64.DEFAULT));
-            mSharedPreferences.edit().putString(key, oAuth_Base64).commit();
+            mSharedPreferences.edit().putString(key, oAuth_Base64).apply();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -228,7 +232,7 @@ public class DataHelper {
      * @param dir
      * @return
      */
-    public static boolean DeleteDir(File dir) {
+    public static boolean deleteDir(File dir) {
         if (dir == null) {
             return false;
         }
@@ -240,14 +244,14 @@ public class DataHelper {
             if (file.isFile()) {
                 file.delete();
             } else if (file.isDirectory()) {
-                DeleteDir(file); // 递归调用继续删除
+                deleteDir(file); // 递归调用继续删除
             }
         }
         return true;
     }
 
 
-    public static String BytyToString(InputStream in) throws IOException {
+    public static String bytyToString(InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buf = new byte[1024];
         int num = 0;

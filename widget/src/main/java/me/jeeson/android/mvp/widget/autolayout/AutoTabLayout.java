@@ -8,12 +8,14 @@ import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import me.jeeson.android.mvp.widget.R;
 import com.zhy.autolayout.utils.AutoUtils;
 import com.zhy.autolayout.utils.DimenUtils;
 
+import me.jeeson.android.mvp.widget.R;
+
+
 /**
- * Created by jeeson on 16/4/14.
+ * Created by Jeeson 16/4/14.
  */
 public class AutoTabLayout extends TabLayout
 {

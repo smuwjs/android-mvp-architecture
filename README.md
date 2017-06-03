@@ -1,10 +1,12 @@
-# android-mvp-architecture
+# MVPArms 
 [ ![Download](https://api.bintray.com/packages/smuwjs/maven/mvp/images/download.svg) ](https://bintray.com/smuwjs/maven/mvp/_latestVersion)
 [ ![Build Status](https://travis-ci.org/smuwjs/android-mvp-architecture.svg?branch=master) ](https://travis-ci.org/smuwjs/android-mvp-architecture)
 [ ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat-square) ](https://developer.android.com/about/versions/android-4.0.3.html)
 [ ![License](http://img.shields.io/badge/License-Apache%202.0-blue.svg?style=flat-square) ](http://www.apache.org/licenses/LICENSE-2.0)
 
-This repository contains a detailed sample app that implements MVP architecture using Dagger2, RxJava, Retrofit and so on, to make your developing quicker and easier.
+## A common Architecture for Android Applications developing based on MVP，integrates many Open Source Projects( like Dagger2,Rxjava,Retrofit... ),to make your developing quicker and easier. 
+
+[中文说明](README-zh.md)
 
 ## Architectural
 <img src="https://github.com/smuwjs/android-mvp-architecture/raw/master/image/architecture.png" width="80%" height="80%">
@@ -24,25 +26,27 @@ If you are building a new project, directly to the entire project **clone** (or 
 3. [`Rxjava`](https://github.com/ReactiveX/RxJava)
 4. [`RxAndroid`](https://github.com/ReactiveX/RxAndroid)
 5. [`Rxlifecycle`](https://github.com/trello/RxLifecycle)
-6. [`Rxbinding`](https://github.com/JakeWharton/RxBinding)
-7. [`RxCache`](https://github.com/VictorAlbertos/RxCache)
-8. [`Retrofit`](https://github.com/square/retrofit)
-9. [`Okhttp`](https://github.com/square/okhttp)
-10. [`Autolayout`](https://github.com/hongyangAndroid/AndroidAutoLayout)
-11. [`Gson`](https://github.com/google/gson)
-12. [`Butterknife`](https://github.com/JakeWharton/butterknife)
-13. [`Androideventbus`](https://github.com/hehonghui/AndroidEventBus)
-14. [`Timber`](https://github.com/JakeWharton/timber)
-15. [`Glide`](https://github.com/bumptech/glide)
-16. [`LeakCanary`](https://github.com/square/leakcanary)
-17. [`RxErroHandler`](https://github.com/JessYanCoding/RxErrorHandler)
+6. [`RxCache`](https://github.com/VictorAlbertos/RxCache)
+7. [`RxPermissions`](https://github.com/tbruyelle/RxPermissions)
+8. [`RxErroHandler`](https://github.com/JessYanCoding/RxErrorHandler)
+9. [`Retrofit`](https://github.com/square/retrofit)
+10. [`Okhttp`](https://github.com/square/okhttp)
+11. [`Autolayout`](https://github.com/hongyangAndroid/AndroidAutoLayout)
+12. [`Gson`](https://github.com/google/gson)
+13. [`Butterknife`](https://github.com/JakeWharton/butterknife)
+14. [`Androideventbus`](https://github.com/hehonghui/AndroidEventBus)
+15. [`Timber`](https://github.com/JakeWharton/timber)
+16. [`Glide`](https://github.com/bumptech/glide)
+17. [`LeakCanary`](https://github.com/square/leakcanary)
+
+
 
 ## Acknowledgements 
-Thanks to all the three libraries used in this framework **Author**, and all for the 'Open Sourece' selfless contributions **Developer** and **Organizations**, so that we can better work and study, I will also spare time return to the open source community.
+Thanks to all the three libraries used in this framework **Author**, and all for the 'Open Sourece' selfless contributions **Developer** and **Organizations**, so that we can better work and study, I will also spare time return to the open source community
 
 ## License
 ``` 
- Copyright (C) 2017 jeeson       
+ Copyright 2016, jessyan       
   
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

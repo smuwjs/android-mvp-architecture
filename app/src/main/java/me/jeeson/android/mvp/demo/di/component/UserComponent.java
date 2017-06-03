@@ -1,18 +1,15 @@
 package me.jeeson.android.mvp.demo.di.component;
 
-
-
-import me.jeeson.android.mvp.demo.di.module.UserModule;
-import me.jeeson.android.mvp.demo.mvp.ui.activity.UserActivity;
-import me.jeeson.android.mvp.di.component.AppComponent;
-import me.jeeson.android.mvp.di.scope.ActivityScope;
+import me.jeeson.android.mvp.arch.di.component.AppComponent;
+import me.jeeson.android.mvp.arch.di.scope.ActivityScope;
 
 import dagger.Component;
-
+import me.jeeson.android.mvp.demo.di.module.UserModule;
+import me.jeeson.android.mvp.demo.mvp.ui.activity.UserActivity;
 
 /**
- * Created by jess on 9/4/16 11:17
- * Contact with jess.yan.effort@gmail.com
+ * Created by Jeeson 9/4/16 11:17
+ * Contact with smuwjs@163.com
  */
 @ActivityScope
 @Component(modules = UserModule.class,dependencies = AppComponent.class)

@@ -9,7 +9,7 @@ import com.zhy.autolayout.AutoLayoutInfo;
 import com.zhy.autolayout.utils.AutoLayoutHelper;
 
 /**
- * Created by jeeson on 16/4/14.
+ * Created by Jeeson 16/4/14.
  */
 public class AutoAppBarLayout extends AppBarLayout {
 
@@ -40,7 +40,7 @@ public class AutoAppBarLayout extends AppBarLayout {
 
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new LayoutParams(getContext(), attrs);
+        return new AutoAppBarLayout.LayoutParams(getContext(), attrs);
     }
 
 
@@ -73,7 +73,7 @@ public class AutoAppBarLayout extends AppBarLayout {
             super(source);
         }
 
-        public LayoutParams(ViewGroup.MarginLayoutParams source)
+        public LayoutParams(MarginLayoutParams source)
         {
             super(source);
         }

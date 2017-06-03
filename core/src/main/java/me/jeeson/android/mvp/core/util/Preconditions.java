@@ -3,8 +3,8 @@ package me.jeeson.android.mvp.core.util;
 import android.support.annotation.Nullable;
 
 /**
- * Created by jess on 26/09/2016 13:59
- * Contact with jess.yan.effort@gmail.com
+ * Created by Jeeson 26/09/2016 13:59
+ * Contact with smuwjs@163.com
  */
 
 public final class Preconditions {

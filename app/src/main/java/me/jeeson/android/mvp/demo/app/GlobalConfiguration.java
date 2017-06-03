@@ -12,20 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 
-import me.jeeson.android.mvp.base.App;
-import me.jeeson.android.mvp.base.delegate.AppDelegate;
-import me.jeeson.android.mvp.demo.BuildConfig;
-import me.jeeson.android.mvp.demo.R;
-import me.jeeson.android.mvp.demo.mvp.model.api.Api;
-import me.jeeson.android.mvp.demo.mvp.model.api.cache.CommonCache;
-import me.jeeson.android.mvp.demo.mvp.model.api.service.CommonAPIService;
-import me.jeeson.android.mvp.demo.mvp.model.api.service.UserAPIService;
-import me.jeeson.android.mvp.di.module.GlobalConfigModule;
-import me.jeeson.android.mvp.http.GlobalHttpHandler;
-import me.jeeson.android.mvp.http.RequestInterceptor;
-import me.jeeson.android.mvp.integration.ConfigModule;
-import me.jeeson.android.mvp.integration.IRepositoryManager;
-import me.jeeson.android.mvp.util.UiUtils;
+import me.jeeson.android.mvp.arch.base.App;
+import me.jeeson.android.mvp.arch.base.delegate.AppDelegate;
+import me.jeeson.android.mvp.arch.di.module.GlobalConfigModule;
+import me.jeeson.android.mvp.arch.http.GlobalHttpHandler;
+import me.jeeson.android.mvp.arch.http.RequestInterceptor;
+import me.jeeson.android.mvp.arch.integration.ConfigModule;
+import me.jeeson.android.mvp.arch.integration.IRepositoryManager;
+import me.jeeson.android.mvp.arch.utils.UiUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -36,16 +30,21 @@ import org.json.JSONObject;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import me.jeeson.android.mvp.demo.BuildConfig;
+import me.jeeson.android.mvp.demo.R;
+import me.jeeson.android.mvp.demo.mvp.model.api.Api;
+import me.jeeson.android.mvp.demo.mvp.model.api.cache.CommonCache;
+import me.jeeson.android.mvp.demo.mvp.model.api.service.CommonService;
+import me.jeeson.android.mvp.demo.mvp.model.api.service.UserService;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import timber.log.Timber;
 
-
 /**
  * app的全局配置信息在此配置,需要将此实现类声明到AndroidManifest中
- * Created by jess on 12/04/2017 17:25
- * Contact with jess.yan.effort@gmail.com
+ * Created by Jeeson 12/04/2017 17:25
+ * Contact with smuwjs@163.com
  */
 
 
@@ -79,7 +78,9 @@ public class GlobalConfiguration implements ConfigModule {
                         create a new request and modify it accordingly using the new token
                         Request newRequest = chain.request().newBuilder().header("token", newToken)
                                              .build();
+
                         retry the request
+
                         response.body().close();
                         如果使用okhttp将新的请求,请求成功后,将返回的response  return出去即可
                         如果不需要返回新的结果,则直接把response参数返回出去 */
@@ -96,13 +97,13 @@ public class GlobalConfiguration implements ConfigModule {
                         return request;
                     }
                 })
-                .responseErroListener((context1, e) -> {
+                .responseErrorListener((context1, t) -> {
                     /* 用来提供处理所有错误的监听
                        rxjava必要要使用ErrorHandleSubscriber(默认实现Subscriber的onError方法),此监听才生效 */
-                    Timber.w("------------>" + e.getMessage());
-                    UiUtils.SnackbarText("net error");
+                    Timber.w("------------>" + t.getMessage());
+                    UiUtils.snackbarText("net error");
                 })
-                .gsonConfiguration((context12, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
+                .gsonConfiguration((context1, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
                     gsonBuilder
                             .serializeNulls()//支持序列化null的参数
                             .enableComplexMapKeySerialization();//支持将序列化key为object的map,默认只能序列化key为string的map
@@ -112,14 +113,15 @@ public class GlobalConfiguration implements ConfigModule {
                 })
                 .okhttpConfiguration((context1, okhttpBuilder) -> {//这里可以自己自定义配置Okhttp的参数
                     okhttpBuilder.writeTimeout(10, TimeUnit.SECONDS);
-                }).rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置RxCache的参数
-            rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
-        });
+                })
+                .rxCacheConfiguration((context1, rxCacheBuilder) -> {//这里可以自己自定义配置RxCache的参数
+                    rxCacheBuilder.useExpiredDataIfLoaderNotAvailable(true);
+                });
     }
 
     @Override
     public void registerComponents(Context context, IRepositoryManager repositoryManager) {
-        repositoryManager.injectRetrofitService(CommonAPIService.class, UserAPIService.class);
+        repositoryManager.injectRetrofitService(CommonService.class, UserService.class);
         repositoryManager.injectCacheService(CommonCache.class);
     }
 
@@ -149,6 +151,7 @@ public class GlobalConfiguration implements ConfigModule {
         lifecycles.add(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                Timber.w(activity + " - onActivityCreated");
                 //这里全局给Activity设置toolbar和title,你想象力有多丰富,这里就有多强大,以前放到BaseActivity的操作都可以放到这里
                 if (activity.findViewById(R.id.toolbar) != null) {
                     if (activity instanceof AppCompatActivity) {
@@ -174,32 +177,32 @@ public class GlobalConfiguration implements ConfigModule {
 
             @Override
             public void onActivityStarted(Activity activity) {
-
+                Timber.w(activity + " - onActivityStarted");
             }
 
             @Override
             public void onActivityResumed(Activity activity) {
-
+                Timber.w(activity + " - onActivityResumed");
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
-
+                Timber.w(activity + " - onActivityPaused");
             }
 
             @Override
             public void onActivityStopped(Activity activity) {
-
+                Timber.w(activity + " - onActivityStopped");
             }
 
             @Override
             public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+                Timber.w(activity + " - onActivitySaveInstanceState");
             }
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                Timber.w(activity + " - onActivityDestroyed");
             }
         });
     }
@@ -218,7 +221,7 @@ public class GlobalConfiguration implements ConfigModule {
 
             @Override
             public void onFragmentDestroyed(FragmentManager fm, Fragment f) {
-                ((RefWatcher)((App) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
+                ((RefWatcher) ((App) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
             }
         });
     }

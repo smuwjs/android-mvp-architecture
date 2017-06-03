@@ -8,7 +8,7 @@ import com.zhy.autolayout.AutoFrameLayout;
 import com.zhy.autolayout.utils.AutoLayoutHelper;
 
 /**
- * Created by jeeson on 9/3/16 21:40
+ * Created by Jeeson 9/3/16 21:40
  * Contact with smuwjs@163.com
  */
 public class AutoCardView extends CardView

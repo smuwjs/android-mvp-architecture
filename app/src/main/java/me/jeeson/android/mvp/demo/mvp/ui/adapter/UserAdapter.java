@@ -2,18 +2,18 @@ package me.jeeson.android.mvp.demo.mvp.ui.adapter;
 
 import android.view.View;
 
-import me.jeeson.android.mvp.base.BaseHolder;
-import me.jeeson.android.mvp.base.DefaultAdapter;
+import me.jeeson.android.mvp.arch.base.BaseHolder;
+import me.jeeson.android.mvp.arch.base.DefaultAdapter;
+
+import java.util.List;
+
 import me.jeeson.android.mvp.demo.R;
 import me.jeeson.android.mvp.demo.mvp.model.entity.User;
 import me.jeeson.android.mvp.demo.mvp.ui.holder.UserItemHolder;
 
-import java.util.List;
-
-
 /**
- * Created by jess on 9/4/16 12:57
- * Contact with jess.yan.effort@gmail.com
+ * Created by Jeeson 9/4/16 12:57
+ * Contact with smuwjs@163.com
  */
 public class UserAdapter extends DefaultAdapter<User> {
     public UserAdapter(List<User> infos) {

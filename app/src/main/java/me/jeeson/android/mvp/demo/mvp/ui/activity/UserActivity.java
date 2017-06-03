@@ -2,35 +2,32 @@ package me.jeeson.android.mvp.demo.mvp.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import me.jeeson.android.mvp.base.BaseActivity;
-import me.jeeson.android.mvp.base.DefaultAdapter;
-import me.jeeson.android.mvp.demo.R;
-import me.jeeson.android.mvp.demo.di.component.DaggerUserComponent;
-import me.jeeson.android.mvp.demo.di.module.UserModule;
-import me.jeeson.android.mvp.demo.mvp.contract.UserContract;
-import me.jeeson.android.mvp.demo.mvp.presenter.UserPresenter;
-import me.jeeson.android.mvp.di.component.AppComponent;
-import me.jeeson.android.mvp.util.UiUtils;
+import me.jeeson.android.mvp.arch.base.BaseActivity;
+import me.jeeson.android.mvp.arch.base.DefaultAdapter;
+import me.jeeson.android.mvp.arch.di.component.AppComponent;
+import me.jeeson.android.mvp.arch.utils.UiUtils;
 import com.paginate.Paginate;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import me.jeeson.android.mvp.demo.R;
+import me.jeeson.android.mvp.demo.di.component.DaggerUserComponent;
+import me.jeeson.android.mvp.demo.di.module.UserModule;
+import me.jeeson.android.mvp.demo.mvp.contract.UserContract;
+import me.jeeson.android.mvp.demo.mvp.presenter.UserPresenter;
 import timber.log.Timber;
 
 
 public class UserActivity extends BaseActivity<UserPresenter> implements UserContract.View, SwipeRefreshLayout.OnRefreshListener {
 
-    @Nullable
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    @Nullable
     @BindView(R.id.swipeRefreshLayout)
     SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -91,7 +88,7 @@ public class UserActivity extends BaseActivity<UserPresenter> implements UserCon
 
     @Override
     public void showMessage(String message) {
-        UiUtils.SnackbarText(message);
+        UiUtils.snackbarText(message);
     }
 
     @Override
