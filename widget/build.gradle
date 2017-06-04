@@ -36,23 +36,6 @@ buildscript {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    //support
-    compile (rootProject.ext.dependencies["support-v4"]){
-        exclude module: 'support-annotations'
-    }
-    compile (rootProject.ext.dependencies["appcompat-v7"]){
-        exclude module: 'support-annotations'
-        exclude module: 'support-v4'
-    }
-    compile (rootProject.ext.dependencies["cardview-v7"]){
-        exclude module: 'support-annotations'
-    }
-    compile (rootProject.ext.dependencies["design"]){
-        exclude module: 'support-annotations'
-    }
-    compile rootProject.ext.dependencies["annotations"]
-
-
     //view
     compile (rootProject.ext.dependencies["autolayout"]) {
         exclude group: 'com.android.support'
@@ -64,6 +47,9 @@ dependencies {
     //test
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
+
+    compile project(':core')
+
 }
 
 apply from: "bintray.gradle"
