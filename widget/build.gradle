@@ -47,6 +47,7 @@ dependencies {
     //test
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
+    compile rootProject.ext.dependencies["brvah"]
 
     compile project(':core')
 

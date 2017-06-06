@@ -3,6 +3,7 @@ package me.jeeson.android.mvp.demo.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.net.ParseException;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,22 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonParseException;
+
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+
 import me.jeeson.android.mvp.arch.base.App;
 import me.jeeson.android.mvp.arch.base.delegate.AppDelegate;
 import me.jeeson.android.mvp.arch.di.module.GlobalConfigModule;
@@ -20,16 +37,6 @@ import me.jeeson.android.mvp.arch.http.RequestInterceptor;
 import me.jeeson.android.mvp.arch.integration.ConfigModule;
 import me.jeeson.android.mvp.arch.integration.IRepositoryManager;
 import me.jeeson.android.mvp.arch.utils.UiUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import me.jeeson.android.mvp.demo.BuildConfig;
 import me.jeeson.android.mvp.demo.R;
 import me.jeeson.android.mvp.demo.mvp.model.api.Api;
@@ -39,6 +46,7 @@ import me.jeeson.android.mvp.demo.mvp.model.api.service.UserService;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.HttpException;
 import timber.log.Timber;
 
 /**
@@ -46,8 +54,6 @@ import timber.log.Timber;
  * Created by Jeeson 12/04/2017 17:25
  * Contact with smuwjs@163.com
  */
-
-
 public class GlobalConfiguration implements ConfigModule {
     @Override
     public void applyOptions(Context context, GlobalConfigModule.Builder builder) {
@@ -78,9 +84,7 @@ public class GlobalConfiguration implements ConfigModule {
                         create a new request and modify it accordingly using the new token
                         Request newRequest = chain.request().newBuilder().header("token", newToken)
                                              .build();
-
                         retry the request
-
                         response.body().close();
                         如果使用okhttp将新的请求,请求成功后,将返回的response  return出去即可
                         如果不需要返回新的结果,则直接把response参数返回出去 */
@@ -100,8 +104,20 @@ public class GlobalConfiguration implements ConfigModule {
                 .responseErrorListener((context1, t) -> {
                     /* 用来提供处理所有错误的监听
                        rxjava必要要使用ErrorHandleSubscriber(默认实现Subscriber的onError方法),此监听才生效 */
-                    Timber.w("------------>" + t.getMessage());
-                    UiUtils.snackbarText("net error");
+                    Timber.tag("Catch-Error").w(t.getMessage());
+                    //这里不光是只能打印错误,还可以根据不同的错误作出不同的逻辑处理
+                    String msg = "未知错误";
+                    if (t instanceof UnknownHostException) {
+                        msg = "网络不可用";
+                    } else if (t instanceof SocketTimeoutException) {
+                        msg = "请求网络超时";
+                    } else if (t instanceof HttpException) {
+                        HttpException httpException = (HttpException) t;
+                        msg = convertStatusCode(httpException);
+                    } else if (t instanceof JsonParseException || t instanceof ParseException || t instanceof JSONException || t instanceof JsonIOException) {
+                        msg = "数据解析错误";
+                    }
+                    UiUtils.snackbarText(msg);
                 })
                 .gsonConfiguration((context1, gsonBuilder) -> {//这里可以自己自定义配置Gson的参数
                     gsonBuilder
@@ -224,6 +240,23 @@ public class GlobalConfiguration implements ConfigModule {
                 ((RefWatcher) ((App) f.getActivity().getApplication()).getAppComponent().extras().get(RefWatcher.class.getName())).watch(this);
             }
         });
+    }
+
+
+    private String convertStatusCode(HttpException httpException) {
+        String msg;
+        if (httpException.code() == 500) {
+            msg = "服务器发生错误";
+        } else if (httpException.code() == 404) {
+            msg = "请求地址不存在";
+        } else if (httpException.code() == 403) {
+            msg = "请求被服务器拒绝";
+        } else if (httpException.code() == 307) {
+            msg = "请求被重定向其他页面";
+        } else {
+            msg = httpException.message();
+        }
+        return msg;
     }
 
 }

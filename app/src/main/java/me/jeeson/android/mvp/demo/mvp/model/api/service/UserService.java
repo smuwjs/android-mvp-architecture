@@ -4,8 +4,10 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import me.jeeson.android.mvp.demo.mvp.model.entity.User;
+import me.jeeson.android.mvp.demo.mvp.model.entity.UserDetail;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
@@ -21,5 +23,9 @@ public interface UserService {
     @GET("/users")
     Observable<List<User>> getUsers(@Query("since") int lastIdQueried, @Query("per_page") int perPage);
 
+
+    @Headers({HEADER_API_VERSION})
+    @GET("/users/{username}")
+    Observable<UserDetail> getUserDetail(@Path("username") String username);
 
 }

@@ -41,7 +41,7 @@ public class LogUtils {
      * @param msg void
      */
     public static void warnInfo(String msg) {
-        warnInfo("zhibo", msg);
+        warnInfo(DEFAULT_TAG, msg);
     }
 
     /**
@@ -60,7 +60,7 @@ public class LogUtils {
         int maxLength = 3500;
         String sub;
         while (index < str.length()) {
-            // java的字符不允许指定超过总的长度end  
+            // java的字符不允许指定超过总的长度end
             if (str.length() <= index + maxLength) {
                 sub = str.substring(index);
             } else {

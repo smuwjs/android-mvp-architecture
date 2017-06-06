@@ -1,4 +1,4 @@
-package me.jeeson.android.mvp.arch.utils;
+package me.jeeson.android.mvp.core.util;
 
 import android.app.Activity;
 import android.app.Dialog;

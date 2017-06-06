@@ -3,7 +3,7 @@ package me.jeeson.android.mvp.arch.base;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import me.jeeson.android.mvp.arch.utils.KnifeUtil;
+import me.jeeson.android.mvp.core.util.KnifeUtil;
 import com.zhy.autolayout.utils.AutoUtils;
 
 /**
