@@ -1,0 +1,14 @@
+@startuml
+
+package "android-mvp-architecture" {
+
+[app] <-- [arch]
+[app] <-- [widget]
+[core] <-- [arch]
+[core] <-- [widget]
+
+}
+
+
+
+@enduml
