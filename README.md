@@ -1,4 +1,4 @@
-# MVPArms 
+# android-mvp-architecture
 [ ![Download](https://api.bintray.com/packages/smuwjs/maven/arch/images/download.svg) ](https://bintray.com/smuwjs/maven/arch/_latestVersion)
 [ ![Build Status](https://travis-ci.org/smuwjs/android-mvp-architecture.svg?branch=master) ](https://travis-ci.org/smuwjs/android-mvp-architecture)
 [ ![API](https://img.shields.io/badge/API-15%2B-blue.svg?style=flat-square) ](https://developer.android.com/about/versions/android-4.0.3.html)
