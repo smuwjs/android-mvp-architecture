@@ -1,0 +1,51 @@
+@startuml
+
+package "android-mvp-architecture" {
+
+ [test] <-- [junit]
+ [test] <-- [espresso]
+ [test] <-- [mockito]
+ [test] <-- [robolectric]
+ [test] <-- [leakcanary]
+
+ [core] <-- [test]
+ [core] <-- [rxjava]
+ [core] <-- [rxlifecycle]
+ [core] <-- [rxpermissions]
+ [core] <-- [dagger]
+ [core] <-- [timber]
+ [core] <-- [gson]
+ [core] <-- [eventbus]
+ [core] <-- [multidex]
+
+ [core] <-- [arouter]
+
+ [widget] <-- [core]
+ [widget] <-- [vlayout]
+ [widget] <-- [autolayout]
+ [widget] <-- [butterknife]
+ [widget] <-- [paginate]
+
+ [data] <-- [retrofit]
+ [data] <-- [rxcache]
+ [data] <-- [okhttp]
+ [data] <-- [glide]
+ [data] <-- [core]
+
+ [arch] <-- [data]
+ [arch] <-- [widget]
+ [arch] <-- [core]
+
+ [business-01] <-- [arch]
+ [business-02] <-- [arch]
+ [business-03] <-- [arch]
+ [business-...] <-- [arch]
+
+ [app] <-- [business-01]
+ [app] <-- [business-02]
+ [app] <-- [business-03]
+ [app] <-- [business-...]
+}
+
+
+@enduml
