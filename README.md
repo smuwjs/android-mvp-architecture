@@ -9,7 +9,7 @@
 [中文说明](README-zh.md)
 
 ## Architectural
-<img src="https://github.com/smuwjs/android-mvp-architecture/raw/master/image/architecture.png" width="80%" height="80%">
+![架构图](doc/uml/architecture.png "架构图")
 
 ## Reference 
 1. [JessYanCoding/MVPArms](https://github.com/JessYanCoding/MVPArms)
