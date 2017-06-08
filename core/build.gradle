@@ -16,6 +16,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
     }
     buildTypes {
         release {
@@ -115,6 +116,9 @@ dependencies {
     //test
     compile rootProject.ext.dependencies["timber"]
     testCompile rootProject.ext.dependencies["junit"]
+
+    testCompile project(':test')
+    androidTestCompile project(':test')
 }
 
 apply from: "bintray.gradle"

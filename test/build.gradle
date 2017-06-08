@@ -1,19 +1,21 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    useLibrary 'org.apache.http.legacy'
 
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
     }
     buildTypes {
         release {
@@ -23,12 +25,38 @@ android {
     }
 }
 
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
+    // Instrumentation test dependencies
+    androidTestCompile rootProject.ext.dependencies["junit"]
+    androidTestCompile rootProject.ext.dependencies["mockito-core"]
+    androidTestCompile rootProject.ext.dependencies["mockito-android"]
+    androidTestCompile rootProject.ext.dependencies["annotations"]
+
+    androidTestCompile(rootProject.ext.dependencies["espresso-contrib"]) {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
+    androidTestCompile rootProject.ext.dependencies["espresso-core"]
+    androidTestCompile rootProject.ext.dependencies["runner"]
+    androidTestCompile rootProject.ext.dependencies["rules"]
+
+    // Unit tests dependencies
+    testCompile rootProject.ext.dependencies["junit"]
+    testCompile rootProject.ext.dependencies["mockito-core"]
+    testCompile rootProject.ext.dependencies["hamcrest-core"]
+    testCompile rootProject.ext.dependencies["hamcrest-library"]
+    testCompile rootProject.ext.dependencies["hamcrest-integration"]
+    testCompile rootProject.ext.dependencies["robolectric"]
+
 }

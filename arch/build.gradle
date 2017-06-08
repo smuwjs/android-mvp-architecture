@@ -90,6 +90,7 @@ dependencies {
 
     compile project(':core')
     compile project(':widget')
+    compile project(':data')
 }
 
 apply from: "bintray.gradle"

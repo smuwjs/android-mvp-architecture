@@ -17,7 +17,8 @@ ext {
                    rxlifecycleSdkVersion   : "1.0",
                    rxlifecycle2SdkVersion   : "2.0.1",
                    espressoSdkVersion      : "2.2.2",
-                   canarySdkVersion        : "1.5.1"
+                   canarySdkVersion        : "1.5.1",
+                   hamcrestVersion          : "1.3"
         ]
 
     dependencies = [
@@ -86,14 +87,20 @@ ext {
                 "junit"                    : "junit:junit:4.12",
                 "androidJUnitRunner"       : "android.support.test.runner.AndroidJUnitRunner",
                 "runner"                   : "com.android.support.test:runner:0.5",
+                "rules"                    : "com.android.support.test:rules:0.5",
                 "espresso-core"            : "com.android.support.test.espresso:espresso-core:${version["espressoSdkVersion"]}",
                 "espresso-contrib"         : "com.android.support.test.espresso:espresso-contrib:${version["espressoSdkVersion"]}",
                 "espresso-intents"         : "com.android.support.test.espresso:espresso-intents:${version["espressoSdkVersion"]}",
-                "mockito-core"             : "org.mockito:mockito-core:1.+",
+                "mockito-core"             : "org.mockito:mockito-core:2.6.2",
+                "mockito-android"          : "org.mockito:mockito-android:2.6.2",
                 "timber"                   : "com.jakewharton.timber:timber:4.5.1",
                 "canary-debug"             : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
                 "canary-release"           : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
-                "umeng-analytics"          : "com.umeng.analytics:analytics:6.0.1"
+                "umeng-analytics"          : "com.umeng.analytics:analytics:6.0.1",
+                "hamcrest-core"            : "org.hamcrest:hamcrest-core:${version["hamcrestVersion"]}",
+                "hamcrest-library"         : "org.hamcrest:hamcrest-library:${version["hamcrestVersion"]}",
+                "hamcrest-integration"     : "org.hamcrest:hamcrest-integration:${version["hamcrestVersion"]}",
+                "robolectric"              : "org.robolectric:robolectric:3.1"
         ]
 
 
