@@ -7,8 +7,11 @@ package "android-mvp-architecture" {
  [test] --> [espresso]
  [test] --> [mockito]
  [test] --> [robolectric]
+ [test] --> [robotium]
+ [test] --> [acra]
  [test] --> [leakcanary]
  [test] --> [blockCanary]
+
 
  [core] --> [test]
  [core] --> [rxjava]

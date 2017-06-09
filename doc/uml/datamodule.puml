@@ -1,0 +1,33 @@
+@startuml
+
+package "data" {
+
+    [retrofit] --> [api1]
+    [retrofit] --> [api2]
+
+    [retrofit] --> [okhttp]
+
+    [http] --> [retrofit]
+    [soap] --> [retrofit]
+
+    [api1] --> [service1-1]
+    [api1] --> [service1-2]
+
+    [api2] --> [service2-1]
+    [api2] --> [service2-2]
+
+    [glide] --> [okhttp]
+
+    [image] --> [glide]
+
+    [cache] --> [database]
+    [cache] --> [preference]
+
+    [data] --> [http]
+    [data] --> [image]
+    [data] --> [soap]
+    [data] --> [cache]
+
+}
+
+@enduml
