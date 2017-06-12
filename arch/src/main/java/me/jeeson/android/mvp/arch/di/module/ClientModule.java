@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.Nullable;
 
-import me.jeeson.android.mvp.arch.http.GlobalHttpHandler;
+import me.jeeson.android.mvp.data.http.GlobalHttpHandler;
 import me.jeeson.android.mvp.arch.http.RequestInterceptor;
 
 import java.io.File;

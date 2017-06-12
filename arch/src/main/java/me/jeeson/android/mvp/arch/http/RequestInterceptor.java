@@ -15,6 +15,7 @@ import javax.inject.Singleton;
 
 import me.jeeson.android.mvp.core.util.CharactorHandler;
 import me.jeeson.android.mvp.core.util.ZipHelper;
+import me.jeeson.android.mvp.data.http.GlobalHttpHandler;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.Request;

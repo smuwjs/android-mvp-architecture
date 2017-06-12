@@ -8,11 +8,11 @@ import me.jeeson.android.mvp.arch.base.App;
 import me.jeeson.android.mvp.arch.base.BaseHolder;
 import me.jeeson.android.mvp.arch.di.component.AppComponent;
 import me.jeeson.android.mvp.arch.imageloader.ImageLoader;
-import me.jeeson.android.mvp.arch.imageloader.glide.GlideImageConfig;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
 
+import me.jeeson.android.mvp.data.imageloader.glide.GlideImageConfig;
 import me.jeeson.android.mvp.demo.R;
 import me.jeeson.android.mvp.demo.mvp.model.entity.User;
 

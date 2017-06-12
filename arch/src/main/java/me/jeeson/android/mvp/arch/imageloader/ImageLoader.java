@@ -5,6 +5,9 @@ import android.content.Context;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import me.jeeson.android.mvp.data.imageloader.BaseImageLoaderStrategy;
+import me.jeeson.android.mvp.data.imageloader.ImageConfig;
+
 /**
  * Created by Jeeson 8/5/16 15:57
  * contact with smuwjs@163.com

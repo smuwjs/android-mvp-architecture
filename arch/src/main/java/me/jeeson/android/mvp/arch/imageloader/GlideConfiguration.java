@@ -1,4 +1,4 @@
-package me.jeeson.android.mvp.arch.imageloader.glide;
+package me.jeeson.android.mvp.arch.imageloader;
 
 import android.content.Context;
 
@@ -13,7 +13,7 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
 import me.jeeson.android.mvp.arch.base.App;
 import me.jeeson.android.mvp.arch.di.component.AppComponent;
-import me.jeeson.android.mvp.arch.http.OkHttpUrlLoader;
+import me.jeeson.android.mvp.data.http.OkHttpUrlLoader;
 import me.jeeson.android.mvp.core.util.DataHelper;
 
 import java.io.File;

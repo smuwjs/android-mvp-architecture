@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 import me.jeeson.android.mvp.arch.base.App;
 import me.jeeson.android.mvp.arch.base.delegate.AppDelegate;
 import me.jeeson.android.mvp.arch.di.module.GlobalConfigModule;
-import me.jeeson.android.mvp.arch.http.GlobalHttpHandler;
+import me.jeeson.android.mvp.data.http.GlobalHttpHandler;
 import me.jeeson.android.mvp.arch.http.RequestInterceptor;
 import me.jeeson.android.mvp.arch.integration.ConfigModule;
 import me.jeeson.android.mvp.arch.integration.IRepositoryManager;

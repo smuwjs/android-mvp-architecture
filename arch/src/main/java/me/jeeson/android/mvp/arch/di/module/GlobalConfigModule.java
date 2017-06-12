@@ -4,9 +4,7 @@ import android.app.Application;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import me.jeeson.android.mvp.arch.http.GlobalHttpHandler;
-import me.jeeson.android.mvp.arch.imageloader.BaseImageLoaderStrategy;
-import me.jeeson.android.mvp.arch.imageloader.glide.GlideImageLoaderStrategy;
+import me.jeeson.android.mvp.data.http.GlobalHttpHandler;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +15,8 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import me.jeeson.android.mvp.core.util.DataHelper;
+import me.jeeson.android.mvp.data.imageloader.BaseImageLoaderStrategy;
+import me.jeeson.android.mvp.data.imageloader.glide.GlideImageLoaderStrategy;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErrorListener;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;

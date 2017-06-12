@@ -41,7 +41,7 @@
             android:value="1920"/>
         <!--glide配置-->
         <meta-data
-            android:name="me.jeeson.android.mvp.arch.imageloader.glide.GlideConfiguration"
+            android:name="me.jeeson.android.mvp.arch.imageloader.GlideConfiguration"
             android:value="GlideModule"/>
 
         <!--arms配置-->
