@@ -69,7 +69,7 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
 
         /**
          * 给每个Activity配置Fragment的监听,Activity可以通过 {@link IActivity#useFragment()} 设置是否使用监听
-         * 如果这个Activity返回false的话,这个Activity将不能使用{@link FragmentDelegate},意味着 {@link me.jeeson.android.mvp.arch.base.BaseFragment}也不能使用
+         * 如果这个Activity返回false的话,这个Activity将不能使用{@link FragmentDelegate},意味着 {@link com.jess.arms.base.BaseFragment}也不能使用
          */
         boolean useFragment = activity instanceof IActivity ? ((IActivity) activity).useFragment() : true;
         if (activity instanceof FragmentActivity && useFragment) {
@@ -145,18 +145,6 @@ public class ActivityLifecycle implements Application.ActivityLifecycleCallbacks
     @Override
     public void onActivityDestroyed(Activity activity) {
         mAppManager.removeActivity(activity);
-
-        boolean useFragment = activity instanceof IActivity ? ((IActivity) activity).useFragment() : true;
-        if (activity instanceof FragmentActivity && useFragment) {
-            if (mFragmentLifecycle != null) {
-                ((FragmentActivity) activity).getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(mFragmentLifecycle);
-            }
-            if (mFragmentLifecycles != null && mFragmentLifecycles.size() > 0) {
-                for (FragmentManager.FragmentLifecycleCallbacks fragmentLifecycle : mFragmentLifecycles) {
-                    ((FragmentActivity) activity).getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentLifecycle);
-                }
-            }
-        }
 
         ActivityDelegate activityDelegate = fetchActivityDelegate(activity);
         if (activityDelegate != null) {

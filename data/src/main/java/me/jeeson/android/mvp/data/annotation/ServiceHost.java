@@ -20,5 +20,4 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 public @interface ServiceHost {
 
     String value() default "";
-    ServiceProtocol protocol() default ServiceProtocol.HTTP;
 }

@@ -84,7 +84,9 @@ public class GlobalConfiguration implements ConfigModule {
                         create a new request and modify it accordingly using the new token
                         Request newRequest = chain.request().newBuilder().header("token", newToken)
                                              .build();
+
                         retry the request
+
                         response.body().close();
                         如果使用okhttp将新的请求,请求成功后,将返回的response  return出去即可
                         如果不需要返回新的结果,则直接把response参数返回出去 */
@@ -252,7 +254,7 @@ public class GlobalConfiguration implements ConfigModule {
         } else if (httpException.code() == 403) {
             msg = "请求被服务器拒绝";
         } else if (httpException.code() == 307) {
-            msg = "请求被重定向其他页面";
+            msg = "请求被重定向到其他页面";
         } else {
             msg = httpException.message();
         }
