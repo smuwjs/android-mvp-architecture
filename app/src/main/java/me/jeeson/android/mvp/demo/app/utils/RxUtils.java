@@ -1,6 +1,8 @@
 package me.jeeson.android.mvp.demo.app.utils;
 
 import me.jeeson.android.mvp.arch.mvp.IView;
+
+import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -50,11 +52,9 @@ public class RxUtils {
 
 
     public static <T> LifecycleTransformer<T> bindToLifecycle(IView view) {
-        if (view instanceof RxAppCompatActivity) {
-            return ((RxAppCompatActivity) view).bindToLifecycle();
-        } else if (view instanceof RxFragment) {
-            return ((RxFragment) view).bindToLifecycle();
-        } else {
+        if (view instanceof LifecycleProvider){
+            return ((LifecycleProvider)view).bindToLifecycle();
+        }else {
             throw new IllegalArgumentException("view isn't activity or fragment");
         }
 
