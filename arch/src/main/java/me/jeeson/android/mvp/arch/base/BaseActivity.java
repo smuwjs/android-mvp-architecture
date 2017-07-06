@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import me.jeeson.android.mvp.arch.base.delegate.IActivity;
 import me.jeeson.android.mvp.arch.mvp.IPresenter;
 import me.jeeson.android.mvp.core.util.ThirdViewUtil;
@@ -14,6 +16,8 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import javax.inject.Inject;
 
+import static me.jeeson.android.mvp.core.util.ThirdViewUtil.convertAutoView;
+
 
 /**
  * 因为java只能单继承,所以如果有需要继承特定Activity的三方库,那你就需要自己自定义Activity
@@ -21,25 +25,39 @@ import javax.inject.Inject;
  */
 public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActivity implements IActivity {
     protected final String TAG = this.getClass().getSimpleName();
+    private Unbinder mUnbinder;
     @Inject
     protected P mPresenter;
 
     @Override
     public View onCreateView(String name, Context context, AttributeSet attrs) {
-        View view = ThirdViewUtil.convertAutoView(name, context, attrs);
+        View view = convertAutoView(name, context, attrs);
         return view == null ? super.onCreateView(name, context, attrs) : view;
     }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            int layoutResID = initView(savedInstanceState);
+            if (layoutResID != 0)//如果initView返回0,框架则不会调用setContentView()
+                setContentView(layoutResID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //绑定到butterknife
+        mUnbinder = ButterKnife.bind(this);
         initData(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mPresenter != null) mPresenter.onDestroy();//释放资源
+        if (mUnbinder != null && mUnbinder != Unbinder.EMPTY)
+            mUnbinder.unbind();
+        this.mUnbinder = null;
+        if (mPresenter != null)
+            mPresenter.onDestroy();//释放资源
         this.mPresenter = null;
     }
 
@@ -55,7 +73,7 @@ public abstract class BaseActivity<P extends IPresenter> extends RxAppCompatActi
 
     /**
      * 这个Activity是否会使用Fragment,框架会根据这个属性判断是否注册{@link android.support.v4.app.FragmentManager.FragmentLifecycleCallbacks}
-     * 如果返回false,那意味着这个Activity不需要绑定Fragment,那你再在这个Activity中绑定继承于 {@link BaseFragment} 的Fragment将不起任何作用
+     * 如果返回false,那意味着这个Activity不需要绑定Fragment,那你再在这个Activity中绑定继承于 {@link com.jess.arms.base.BaseFragment} 的Fragment将不起任何作用
      *
      * @return
      */
